@@ -18,9 +18,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		EntityManagerFactory entityFactory = Persistence.createEntityManagerFactory("PersistenceUnitJPA");
-		
 		EntityManager entity = entityFactory.createEntityManager();
-		
 		
 //		Ingredientes Camembert = new Ingredientes(3, "Camembert", "França");
 //		Ingredientes Brie = new Ingredientes(4, "Brie", "França");
@@ -68,7 +66,6 @@ public class Main {
 		funcionario.setNome("washington candido dos santos da silva");
 		funcionario.setFuncao("Entregador");
 		funcionario.setEstado(estado);
-		
 		
 		entity.getTransaction().begin();
 		
