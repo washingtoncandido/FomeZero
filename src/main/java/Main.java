@@ -42,7 +42,7 @@ public class Main {
 		carneMoida.setMarca("friboi");
 		
 		Ingredientes alface = new Ingredientes();
-		alface.setId(2);
+		alface.setCod(2);
 		alface.setNome("alface");
 		alface.setMarca("natural");
 		
