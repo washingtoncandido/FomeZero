@@ -36,13 +36,7 @@ public class Ingredientes {
 	public Ingredientes() {
 		super();
 	}
-	
-	public Integer getId() {
-		return cod;
-	}
-	public void setId(Integer cod) {
-		this.cod = cod;
-	}
+
 	public Integer getCod() {
 		return cod;
 	}

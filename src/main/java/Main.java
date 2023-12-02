@@ -30,16 +30,19 @@ public class Main {
 //		Ingredientes batataIngl = new Ingredientes(8,"batata Inglesa","natural");
 //		Ingredientes tomate = new Ingredientes(9,"tomate","natural");
 //		Ingredientes cebola = new Ingredientes(10,"cebola","natural");
-//		Ingredientes paofrances=  new Ingredientes(11,"Pão françes","frances");
-		
 
+		Ingredientes pao =  new Ingredientes();
+		pao.setCod(3);
+		pao.setNome("Pão");
+		pao.setMarca("frances");
+		
 		Ingredientes carneMoida = new Ingredientes();
-		carneMoida.setId(1);
+		carneMoida.setCod(1);
 		carneMoida.setNome("alcatra");
 		carneMoida.setMarca("friboi");
 		
 		Ingredientes alface = new Ingredientes();
-		alface.setId(2);
+		alface.setCod(2);
 		alface.setNome("alface");
 		alface.setMarca("natural");
 		
