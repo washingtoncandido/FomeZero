@@ -5,11 +5,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Funcionario")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Funcionario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +20,7 @@ public abstract class Funcionario {
 	private String nome;
 	private String endereco;
 	private double salario;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Estado estado;
 
@@ -27,6 +31,6 @@ public abstract class Funcionario {
 		this.endereco = endereco;
 		this.estado = estado;
 		this.salario = salario;
-	}
+		}
 
 }

@@ -31,6 +31,7 @@ public class Entregador extends Funcionario {
     public void setRotaDeEntrega(String rotaDeEntrega) {
         this.rotaDeEntrega = rotaDeEntrega;
     }
+    
 
     public String getTelefone() {
         return telefone;

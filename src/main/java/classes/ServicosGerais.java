@@ -13,6 +13,7 @@ public class ServicosGerais extends Funcionario {
         this.servicoAtual = servicoAtual;
         this.especialidades = especialidades;
         this.bonusDeInsalubridade = bonusDeInsalubridade;
+        
     }
 
     public String getServicoAtual() {
