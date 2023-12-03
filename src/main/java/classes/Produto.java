@@ -28,11 +28,9 @@ public class Produto {
 	        joinColumns = @JoinColumn(name = "produto_id"),
 	        inverseJoinColumns = @JoinColumn(name = "ingrediente_id")
 	    )
-	    private Set<Ingredientes> ingredientes = new HashSet<>();
-
+	    private Set<Ingredientes> ingredientes = new HashSet<>();	
 	
-	
-	public Produto(Integer cod, String nome, Double preco, Boolean oferta, Set<Ingredientes> igredientes) {
+	public Produto(Integer cod, String nome, Double preco, Boolean oferta, Set<Ingredientes> igredientes,Set<IngredientesPa> igredientesPa) {
 		super();
 		this.cod = cod;
 		this.nome = nome;
@@ -43,7 +41,6 @@ public class Produto {
 	public Produto() {
 		super();
 	}
-
 
 	public Integer getCod() {
 		return cod;
@@ -58,7 +55,6 @@ public class Produto {
 	public String getNome() {
 		return nome;
 	}
-
 
 	public void setNome(String nome) {
 		this.nome = nome;
