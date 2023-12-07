@@ -1,32 +1,16 @@
-<<<<<<< HEAD
-import classes.IngredientesFrios;
-import classes.IngredientesPa;
-import classes.Produto;
-=======
- 
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
->>>>>>> 5524c63997816d802af3772e70995ea14061d63f
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-<<<<<<< HEAD
-import java.util.HashSet;
-import java.util.Set;
-=======
 import javax.persistence.criteria.CriteriaBuilder.In;
-
-
-import classes.Estado;
 import classes.Ingredientes;
 import classes.Produto;
 import dao.ProdutoDAO;
 import ultil.Validador;
->>>>>>> 5524c63997816d802af3772e70995ea14061d63f
 
 public class Main {
 
@@ -64,41 +48,10 @@ public class Main {
 		conjuntoIngredientesFrankistai.add(gorgonzola);
 		conjuntoIngredientesFrankistai.add(cebola);
 		conjuntoIngredientesFrankistai.add(tomate);
-		conjuntoIngredientesFrankistai.add(brie);
+		conjuntoIngredientesFrankistai.add(brie);		
 
-
-<<<<<<< HEAD
-		
-
-		
-	
-		
-		
-		
-//	Validador validador = new Validador();
-//		if (validador.validarNumero(1) ) {
-//			carne.updateQtd(1);
-//		}else {
-//			System.out.println("valor invalido");
-//		}
-		
-//		Cozinheiro funcionario = new Cozinheiro();
-//		fun
-//		funcionario.setEndereco("Rua  barao de grajau");
-//		funcionario.setNome("washington candido dos santos da silva");
-//		funcionario.setFuncao("Entregador");
-//		funcionario.setEstado(estado);
-		
-		//gravando dados no banco 
 		entity.getTransaction().begin();
-////	entity.persist(funcionario);
-=======
-	
-
-		//gravando dados no banco  de ingredientes
-		entity.getTransaction().begin();		
 		entity.persist(camembert);
->>>>>>> 5524c63997816d802af3772e70995ea14061d63f
 		entity.persist(carne);
 		entity.persist(mortadela);
 		entity.persist(guarana);

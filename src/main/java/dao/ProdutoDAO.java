@@ -47,7 +47,7 @@ public class ProdutoDAO {
 			entityManager.remove(produto);
 			produto.exibirProduto();
 			entityManager.getTransaction().commit();
-			
+
 		} else {
 			System.out.println("produto não encontrado");
 		}
