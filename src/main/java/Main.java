@@ -1,12 +1,32 @@
+<<<<<<< HEAD
 import classes.IngredientesFrios;
 import classes.IngredientesPa;
 import classes.Produto;
+=======
+ 
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+>>>>>>> 5524c63997816d802af3772e70995ea14061d63f
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+<<<<<<< HEAD
 import java.util.HashSet;
 import java.util.Set;
+=======
+import javax.persistence.criteria.CriteriaBuilder.In;
+
+
+import classes.Estado;
+import classes.Ingredientes;
+import classes.Produto;
+import dao.ProdutoDAO;
+import ultil.Validador;
+>>>>>>> 5524c63997816d802af3772e70995ea14061d63f
 
 public class Main {
 
@@ -14,54 +34,40 @@ public class Main {
 		EntityManagerFactory entityFactory = Persistence.createEntityManagerFactory("PersistenceUnitJPA");
 		EntityManager entity = entityFactory.createEntityManager();
 		
-//		Ingredientes Camembert = new Ingredientes(3, "Camembert", "França");
-//		Ingredientes Brie = new Ingredientes(4, "Brie", "França");
-//		Ingredientes Roquefort = new Ingredientes(5, "Brie", "Roquefort");
-//		Ingredientes Gorgonzola  = new Ingredientes(6, "Gorgonzola", "Itália");
-//		Ingredientes Muçarela  = new Ingredientes(7, "Muçarela", "Itália");
-//		Ingredientes batataIngl = new Ingredientes(8,"batata Inglesa","natural");
-//		Ingredientes tomate = new Ingredientes(9,"tomate","natural");
-//		Ingredientes cebola = new Ingredientes(10,"cebola","natural");
-
-//		Ingredientes pao =  new Ingredientes();
-//		pao.setCod(3);
-//		pao.setNome("Pão");
-//		pao.setMarca("frances");
-//		
-//		Ingredientes carneMoida = new Ingredientes();
-//		carneMoida.setCod(1);
-//		carneMoida.setNome("alcatra");
-//		carneMoida.setMarca("friboi");
-//		
-//		Ingredientes alface = new Ingredientes();
-//		alface.setCod(2);
-//		alface.setNome("alface");
-//		alface.setMarca("natural");
-		
-		
-		Produto lobisome = new Produto();
-		lobisome.setCod(123);
-		lobisome.setNome("lobisome");
-		lobisome.setOferta(true);
-		lobisome.setPreco(23.0);
-		
+		ProdutoDAO produtoDao = new ProdutoDAO();
 		Set<Produto> conjuntoProdutos = new HashSet<Produto>();
-		Set<IngredientesFrios> conjuntoIngredientesFrios = new HashSet<IngredientesFrios>();
-		Set<IngredientesPa> conjuntoIngredientesPa = new HashSet<IngredientesPa>();
+		Set<Ingredientes> conjuntoIngredientesFrankistai = new HashSet<Ingredientes>();
+		Set<Ingredientes> conjuntoIngredientesLobisome = new HashSet<Ingredientes>();
 		
-		IngredientesFrios carne = new IngredientesFrios(1, "moida", "sadia",conjuntoProdutos , 100,"FR");
-		IngredientesPa guarana = new IngredientesPa(2,"guaradana","teste", conjuntoProdutos, 102, "PA");
+		
+		Ingredientes carne = new Ingredientes(1, "moida", "sadia",conjuntoProdutos , 100,"FR");
+		Ingredientes guarana = new Ingredientes(2,"guaradana","bovinos", conjuntoProdutos, 102, "FR");
+		Ingredientes mortadela = new Ingredientes(11,"mortadela","bovinos", conjuntoProdutos, 102, "PA");
+		Ingredientes camembert = new Ingredientes(3, "Camembert", "França",conjuntoProdutos,123,"PA");
+		Ingredientes brie = new Ingredientes(4, "Brie", "França",conjuntoProdutos,123,"PA");
+		Ingredientes gorgonzola  = new Ingredientes(6, "Gorgonzola", "Itália",conjuntoProdutos,123,"PA");
+		Ingredientes mucarela  = new Ingredientes(7, "Muçarela", "Itália",conjuntoProdutos,123,"PA");
+		Ingredientes batataIngl = new Ingredientes(8,"batata Inglesa","natural",conjuntoProdutos,123,"PA");
+		Ingredientes tomate = new Ingredientes(9,"tomate","natural",conjuntoProdutos,123,"PA");
+		Ingredientes cebola = new Ingredientes(10,"cebola","natural",conjuntoProdutos,123,"PA");
+		
+		Produto lobisome = new Produto(123,"lobisome",23.0,true,conjuntoIngredientesLobisome);
+		Produto frankistai = new Produto(1234,"Classic Burger Deluxe",12.2,false,conjuntoIngredientesFrankistai);
 	
-	
-		conjuntoIngredientesPa.add(guarana);
-		conjuntoIngredientesFrios.add(carne);
+		conjuntoIngredientesLobisome.add(cebola);
+		conjuntoIngredientesLobisome.add(tomate);
+		conjuntoIngredientesLobisome.add(mucarela);
+		conjuntoIngredientesLobisome.add(guarana);
+		conjuntoIngredientesLobisome.add(carne);
 		
-		lobisome.getIngredientes().addAll( conjuntoIngredientesPa);
-		lobisome.getIngredientes().addAll(conjuntoIngredientesFrios);
-		
-		
-		
+		conjuntoIngredientesFrankistai.add(carne);
+		conjuntoIngredientesFrankistai.add(gorgonzola);
+		conjuntoIngredientesFrankistai.add(cebola);
+		conjuntoIngredientesFrankistai.add(tomate);
+		conjuntoIngredientesFrankistai.add(brie);
 
+
+<<<<<<< HEAD
 		
 
 		
@@ -86,12 +92,46 @@ public class Main {
 		//gravando dados no banco 
 		entity.getTransaction().begin();
 ////	entity.persist(funcionario);
+=======
+	
+
+		//gravando dados no banco  de ingredientes
+		entity.getTransaction().begin();		
+		entity.persist(camembert);
+>>>>>>> 5524c63997816d802af3772e70995ea14061d63f
 		entity.persist(carne);
+		entity.persist(mortadela);
 		entity.persist(guarana);
+		entity.persist(brie);
+		entity.persist(gorgonzola);
+		entity.persist(batataIngl);
+		entity.persist(guarana);
+		entity.persist(tomate);
+		entity.persist(cebola);
+		entity.persist(mucarela);
+
+		//gravando dados no banco  de produtos
+		entity.persist(frankistai);
 		entity.persist(lobisome);
-//		
 		entity.getTransaction().commit();
 		
+		
+		//Buscando produto espercifico e listando os ingrediente dele 
+		//pergunta ao cliente qual produto ele deseja 
+		Produto produtoEcontrado = produtoDao.searchPorID(123);
+		System.out.println("Produto encontrado");
+		produtoEcontrado.exibirProduto();
+		System.out.println("Lista de ingrediente do produto encontrado");
+		List<Ingredientes> ingredientesList = produtoDao.listAllIngredientProduct(123);
+		for (Ingredientes ingrediente : ingredientesList) {
+		    System.out.println("Nome: " + ingrediente.getNome());
+		}
+		
+		produtoDao.deletProduct(123);
+		//System.out.println(produtoEcontrado);
+
+		
+
 		entity.close();
 		entityFactory.close();
 	}
