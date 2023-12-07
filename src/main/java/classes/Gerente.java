@@ -15,10 +15,4 @@ public class Gerente extends Funcionario{
     public void setAreaEspecializacao(String areaEspecializacao) {
         this.areaEspecializacao = areaEspecializacao;
     }
-    public void contratarFuncionario(Funcionario funcionario) {
-//        return NULL;
-    }
-    public void demitirFuncionario(Funcionario funcionario) {
-//        funcionario == NULL;
-    }
     }
