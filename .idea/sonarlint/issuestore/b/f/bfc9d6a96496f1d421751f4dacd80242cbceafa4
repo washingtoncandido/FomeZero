@@ -1,9 +1,10 @@
 
 V
-java:S5993"9Change the visibility of this constructor to "protected".(Àı”­8îóúÂÂ1
+java:S5993"9Change the visibility of this constructor to "protected".(œïÑé8îóúÂÂ1
 E
-java:S1068"(Remove this unused "nome" private field.(«Ÿ¡ù8ˆ±ÃÂ1
+java:S1068
+"(Remove this unused "nome" private field.(«Ÿ¡ù8ˆ±ÃÂ1
 N
-java:S1068",Remove this unused "endereco" private field.(Å¶§ÿüÿÿÿÿ8ˆ±ÃÂ1
+java:S1068",Remove this unused "endereco" private field.(Å¶§ÿüÿÿÿÿ8ˆ±ÃÂ1
 H
-java:S1068"+Remove this unused "salario" private field.(È“ïë8öÏÃÂ1
+java:S1068"+Remove this unused "salario" private field.(È“ïë8öÏÃÂ1

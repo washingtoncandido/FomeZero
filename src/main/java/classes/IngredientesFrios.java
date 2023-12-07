@@ -1,12 +1,9 @@
 package classes;
 
-import java.sql.Date;
-import java.util.Set;
-
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
-import ultil.Validador;
+import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @DiscriminatorValue("FRIOS")

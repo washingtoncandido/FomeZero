@@ -15,3 +15,13 @@ U
 %src/main/java/classes/Cozinheiro.java,2\2\22492a4ada054ca9d444dcb607ea3d60934bf5ed
 U
 %src/main/java/classes/Entregador.java,6\4\64bb37b1c676f09a2128b2dea1c1c1af00ebeffb
+\
+,src/main/java/classes/IngredientesFrios.java,0\2\028271aac8cd340d99b8fd4cc153ddb34a6e04bc
+Y
+)src/main/java/classes/IngredientesPa.java,b\a\ba2e2b072b0ec4ec84c358fa5b7cae97b6e5afcf
+R
+"src/main/java/classes/Produto.java,4\0\4065f6ba1d7e2fa7e7807b6892888e52cb2949bb
+W
+'src/main/java/classes/Ingredientes.java,b\4\b4411121125f9c361b419f86ff696ca2e52f8c0a
+R
+"src/main/java/classes/Gerente.java,4\6\46cba90d911215c0d31f62fdf9db207c3afa79d8

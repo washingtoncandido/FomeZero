@@ -8,8 +8,8 @@ public class ServicosGerais extends Funcionario {
     private List<String> especialidades;
     private double bonusDeInsalubridade;
 
-    public ServicosGerais(int id, String nome, String endereco, Estado estado, double salario, String servicoAtual, List<String> especialidades, double bonusDeInsalubridade) {
-        super(id, nome, endereco, estado, salario);
+    public ServicosGerais(int id, String nome, String endereco, double salario, String servicoAtual, List<String> especialidades, double bonusDeInsalubridade) {
+        super(id, nome, endereco, salario);
         this.servicoAtual = servicoAtual;
         this.especialidades = especialidades;
         this.bonusDeInsalubridade = bonusDeInsalubridade;

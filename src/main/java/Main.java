@@ -1,22 +1,12 @@
- 
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import classes.IngredientesFrios;
+import classes.IngredientesPa;
+import classes.Produto;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
-import classes.Funcionario;
-import classes.Ingredientes;
-import classes.IngredientesFrios;
-import classes.IngredientesPa;
-import classes.Produto;
-import ultil.Validador;
-import classes.Cozinheiro;
-import classes.Estado;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
 
@@ -73,20 +63,18 @@ public class Main {
 		
 
 		
-		Estado estado = new Estado();
-		estado.setNome("Permanbuco");
-		estado.setSigla("PE");
+
 		
 	
 		
 		
 		
-	Validador validador = new Validador();
-		if (validador.validarNumero(1) ) {
-			carne.updateQtd(1);
-		}else {
-			System.out.println("valor invalido");
-		}
+//	Validador validador = new Validador();
+//		if (validador.validarNumero(1) ) {
+//			carne.updateQtd(1);
+//		}else {
+//			System.out.println("valor invalido");
+//		}
 		
 //		Cozinheiro funcionario = new Cozinheiro();
 //		fun
@@ -96,8 +84,7 @@ public class Main {
 //		funcionario.setEstado(estado);
 		
 		//gravando dados no banco 
-		entity.getTransaction().begin();		
-		entity.persist(estado);
+		entity.getTransaction().begin();
 ////	entity.persist(funcionario);
 		entity.persist(carne);
 		entity.persist(guarana);

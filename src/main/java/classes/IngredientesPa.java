@@ -1,10 +1,8 @@
 package classes;
 
-import java.util.Set;
-
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import ultil.Validador;
+import java.util.Set;
 
 @Entity
 @DiscriminatorValue("PA")

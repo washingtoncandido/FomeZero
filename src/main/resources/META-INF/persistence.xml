@@ -13,6 +13,13 @@
         <!--  <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
         <class>classes.Funcionario</class>
         <class>classes.Estado</class>
+         <class>classes.Cozinheiro</class>
+         <class>classes.Entregador</class>
+         <class>classes.Ingredientes</class>
+         <class>classes.IngredientesPa</class>
+         <class>classes.IngredientesFrios</class>
+         <class>classes.Produto</class>
+         <class>classes.ServicosGerais</class>
 
         <properties>
             <!-- Configuracoes do banco de dados -->
