@@ -5,55 +5,60 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import java.util.List;
-import classes.Funcionario;
-public class FuncionarioDAO {
 
-	private final EntityManager entityManager;
+import classes.Entregador;
 
-	public FuncionarioDAO() {
-		
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PersistenceUnitJPA");
-		entityManager = entityManagerFactory.createEntityManager();
-	}
-	
-	public void save(Funcionario funcionario) {
-		entityManager.persist(funcionario);
-		entityManager.getTransaction().commit();
-	}
-	
-	public Funcionario searchPor(int id) {
-		return entityManager.find(Funcionario.class, id);
-	}
-	public Funcionario searchPor(String nome) {
-		return entityManager.find(Funcionario.class, nome);
-	}
-	
-	public List<Funcionario> listAllFuncionario(int id) {
-		return entityManager.createQuery("select * from funcionario ", Funcionario.class).getResultList();
-		
-	}
+public class EntregadorDAO {
 
-	public void deletFuncionario(int id){
-		entityManager.getTransaction().begin();
-		Funcionario funcionario = entityManager.find(Funcionario.class, id);
+    private final EntityManager entityManager;
 
-		if(funcionario != null) {
-			entityManager.remove(funcionario);
-//			funcionario.
-			entityManager.getTransaction().commit();
-		}
-		}
-		public void updateFuncionario(int id) {
-			entityManager.getTransaction().begin();
-			Funcionario funcionario = entityManager.find(Funcionario.class,id);
-//			if(funcionario != null) {
+    public EntregadorDAO() {
+
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PersistenceUnitJPA");
+        entityManager = entityManagerFactory.createEntityManager();
+    }
+
+    public void save(Entregador entregador) {
+        entityManager.persist(entregador);
+        entityManager.getTransaction().commit();
+    }
+
+    public Entregador searchPorId(int id) {
+        return entityManager.find(Entregador.class, id);
+    }
+
+    public Entregador searchPor(String nome) {
+        return entityManager.find(Entregador.class, nome);
+    }
+
+    public List<Entregador> listAllEntregador() {
+        return entityManager.createQuery("select * from entregador ", Entregador.class).getResultList();
+
+    }
+
+    public void deletEntregador(int id) {
+        entityManager.getTransaction().begin();
+        Entregador entregador = entityManager.find(Entregador.class, id);
+
+        if (entregador != null) {
+            entityManager.remove(entregador);
+//			entregador.
+            entityManager.getTransaction().commit();
+        }
+    }
+
+    public void updateEntregador(int id) {
+        entityManager.getTransaction().begin();
+        Entregador entregador = entityManager.find(Entregador.class, id);
+//			if(entregador != null) {
 //
 //			}
-		}
-	public void fecharEntityManager() {
-		if (entityManager != null && entityManager.isOpen()) {
-			entityManager.close();
-		}
-	}
+    }
+
+    public void fecharEntityManager() {
+        if (entityManager != null && entityManager.isOpen()) {
+            entityManager.close();
+        }
+    }
 
 }

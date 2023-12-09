@@ -1,66 +1,4 @@
-package dao;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import java.util.List;
-
-import classes.Entregador;
-import classes.Gerente;
-import classes.ServicosGerais;
-
-public class GerenteDAO {
-
-    private final EntityManager entityManager;
-
-    public GerenteDAO() {
-
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PersistenceUnitJPA");
-        entityManager = entityManagerFactory.createEntityManager();
-    }
-
-    public void save(GerenteDAO entregador) {
-        entityManager.persist(entregador);
-        entityManager.getTransaction().commit();
-    }
-
-    public GerenteDAO searchPorId(int id) {
-        return entityManager.find(Gerente.class, id);
-    }
-    public GerenteDAO searchPor(String nome) {
-        return entityManager.find(Gerente.class, nome);
-    }
-
-    public List<Entregador> listAllEntregador() {
-        return entityManager.createQuery("select * from entregador ", Gerente.class).getResultList();
-
-    }
-
-    public void deletEntregador(int id){
-        entityManager.getTransaction().begin();
-        GerenteDAO entregador = entityManager.find(Gerente.class, id);
-
-        if(entregador != null) {
-            entityManager.remove(entregador);
-//			entregador.
-            entityManager.getTransaction().commit();
-        }
-    }
-    public void updateEntregador(int id) {
-        entityManager.getTransaction().begin();
-        GerenteDAO entregador = entityManager.find(Gerente.class,id);
-//			if(entregador != null) {
-//
-//			}
-    }
-    public void fecharEntityManager() {
-        if (entityManager != null && entityManager.isOpen()) {
-            entityManager.close();
-        }
-    }
-
-}
 package dao;
 
         import javax.persistence.EntityManager;
@@ -69,8 +7,7 @@ package dao;
 
         import java.util.List;
 
-        import classes.Entregador;
-        import classes.Gerente;
+        import classes.ServicosGerais;
 
 public class ServicosGeraisDAO {
 
@@ -82,8 +19,8 @@ public class ServicosGeraisDAO {
         entityManager = entityManagerFactory.createEntityManager();
     }
 
-    public void save(ServicosGerais entregador) {
-        entityManager.persist(entregador);
+    public void save(ServicosGerais servicosGerais) {
+        entityManager.persist(servicosGerais);
         entityManager.getTransaction().commit();
     }
 
@@ -94,25 +31,25 @@ public class ServicosGeraisDAO {
         return entityManager.find(ServicosGerais.class, nome);
     }
 
-    public List<Entregador> listAllEntregador() {
-        return entityManager.createQuery("select * from entregador ", Gerente.class).getResultList();
+    public List<ServicosGerais> listAllServicosGerais() {
+        return entityManager.createQuery("select * from servicosGerais ", ServicosGerais.class).getResultList();
 
     }
 
-    public void deletEntregador(int id){
+    public void deletServicosGerais(int id){
         entityManager.getTransaction().begin();
-        GerenteDAO entregador = entityManager.find(Gerente.class, id);
+        ServicosGerais servicosGerais = entityManager.find(ServicosGerais.class, id);
 
-        if(entregador != null) {
-            entityManager.remove(entregador);
-//			entregador.
+        if(servicosGerais != null) {
+            entityManager.remove(servicosGerais);
+//			servicosGerais.
             entityManager.getTransaction().commit();
         }
     }
-    public void updateEntregador(int id) {
+    public void updateServicosGerais(int id) {
         entityManager.getTransaction().begin();
-        GerenteDAO entregador = entityManager.find(Gerente.class,id);
-//			if(entregador != null) {
+        ServicosGerais servicosGerais = entityManager.find(ServicosGerais.class,id);
+//			if(servicosGerais != null) {
 //
 //			}
     }
