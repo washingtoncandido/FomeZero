@@ -51,6 +51,7 @@ public class Entregador extends Funcionario {
         this.gorjeta = gorjeta;
     }
 
+
     @Override
     public String toString() {
         return "Entregador{" +

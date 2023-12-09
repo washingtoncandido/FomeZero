@@ -14,7 +14,6 @@ public class Cozinheiro extends Funcionario {
         this.bonus = bonus;
         this.certificacoesCulinarias = certificacoesCulinarias;
         this.experienciaNaCozinha = experienciaNaCozinha;
-
     }
 
     public double getBonus() {
