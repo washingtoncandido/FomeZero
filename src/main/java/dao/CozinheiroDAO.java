@@ -7,6 +7,8 @@ import javax.persistence.Persistence;
 import java.util.List;
 
 import classes.Cozinheiro;
+import classes.Entregador;
+import classes.ServicosGerais;
 
 public class CozinheiroDAO {
 
@@ -19,40 +21,87 @@ public class CozinheiroDAO {
     }
 
     public void save(Cozinheiro cozinheiro) {
-        entityManager.persist(cozinheiro);
-        entityManager.getTransaction().commit();
-    }
-
-    public Cozinheiro searchPorId(int id) {
-        return entityManager.find(Cozinheiro.class, id);
-    }
-
-    public Cozinheiro searchPorNome(String nome) {
-        return entityManager.find(Cozinheiro.class, nome);
-    }
-
-    public List<Cozinheiro> listAllCozinheiror() {
-        return entityManager.createQuery("select * from cozinheiro ", Cozinheiro.class).getResultList();
-
-    }
-
-    public void deletCozinheiro(int id) {
-        entityManager.getTransaction().begin();
-        Cozinheiro cozinheiro = entityManager.find(Cozinheiro.class, id);
-
-        if (cozinheiro != null) {
-            entityManager.remove(cozinheiro);
-//			cozinheiro.
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(cozinheiro);
             entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("mensagem de erro: " + e.getMessage());
+            entityManager.getTransaction().rollback();
         }
     }
 
-    public void updateCozinheiro(int id) {
-        entityManager.getTransaction().begin();
-        Cozinheiro cozinheiro = entityManager.find(Cozinheiro.class, id);
-//			if(cozinheiro != null) {
-//
-//			}
+    public Cozinheiro searchPorId(int id) {
+        try {
+            return entityManager.find(Cozinheiro.class, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("mensagem de erro: " + e.getMessage());
+            return null;
+        }
+    }
+    public Cozinheiro searchPorNome(String nome) {
+        try {
+            return entityManager.find(Cozinheiro.class, nome);
+        } catch(Exception e){
+            e.printStackTrace();
+            System.out.println("mensagem de erro: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public List<Cozinheiro> listAllEntregador() {
+        try {
+            return entityManager.createQuery("select * from cozinheiro ", Cozinheiro.class).getResultList();
+        } catch(Exception e){
+            e.printStackTrace();
+            System.out.println("mensagem de erro: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public void deletCozinheiro(int id) {
+        try {
+            entityManager.getTransaction().begin();
+            Cozinheiro cozinheiro = entityManager.find(Cozinheiro.class, id);
+            if (cozinheiro != null) {
+                entityManager.remove(cozinheiro);
+                entityManager.getTransaction().commit();
+
+            } else {
+                System.out.println("Cozinheiro não encontrado");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("mensagem de erro: " + e.getMessage());
+            entityManager.getTransaction().rollback();
+        }
+    }
+
+    public void updateCozinheiro(int id, String novoNome, String novoEndereco,
+                                     double novoSalario, double novoBonus, String novasCertificacaoCulinaria) {
+        try {
+            entityManager.getTransaction().begin();
+            Cozinheiro cozinheiro = entityManager.find(Cozinheiro.class, id);
+
+            if(cozinheiro != null){
+                cozinheiro.setNome(novoNome);
+                cozinheiro.setEndereco(novoEndereco);
+                cozinheiro.setSalario(novoSalario);
+                cozinheiro.setBonus(novoBonus);
+                cozinheiro.setCertificacaoCulinaria(novasCertificacaoCulinaria);
+
+            }else{
+                System.out.println("Cozinheiro não encontrado");
+            }
+            entityManager.merge(cozinheiro);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("mensagem de erro: " + e.getMessage());
+            entityManager.getTransaction().rollback();
+        }
     }
 
     public void fecharEntityManager() {
