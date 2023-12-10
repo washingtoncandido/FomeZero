@@ -6,14 +6,13 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Entity
 public class Cozinheiro extends Funcionario {
     private double bonus;
-    private String certificacoesCulinarias;
-    private String experienciaNaCozinha;
+    private String certificacaoCulinaria;
 
-    public Cozinheiro(int id, String nome, String endereco, double salario, double bonus, String certificacoesCulinarias, String experienciaNaCozinha) {
+
+    public Cozinheiro(int id, String nome, String endereco, double salario, double bonus, String certificacaoCulinaria) {
         super(id, nome, endereco, salario);
         this.bonus = bonus;
-        this.certificacoesCulinarias = certificacoesCulinarias;
-        this.experienciaNaCozinha = experienciaNaCozinha;
+        this.certificacaoCulinaria = certificacaoCulinaria;
     }
 
     public double getBonus() {
@@ -25,27 +24,17 @@ public class Cozinheiro extends Funcionario {
     }
 
     public String getCertificacoesCulinarias() {
-        return certificacoesCulinarias;
+        return certificacaoCulinaria;
     }
 
-    public void setCertificacoesCulinarias(String certificacoesCulinarias) {
-        this.certificacoesCulinarias = certificacoesCulinarias;
+    public void setCertificacaoCulinaria(String certificacaoCulinaria) {
+        this.certificacaoCulinaria = certificacaoCulinaria;
     }
-
-    public String getExperienciaNaCozinha() {
-        return experienciaNaCozinha;
-    }
-
-    public void setExperienciaNaCozinha(String experienciaNaCozinha) {
-        this.experienciaNaCozinha = experienciaNaCozinha;
-    }
-
     @Override
     public String toString() {
         return "Cozinheiro{" +
                 "bonus=" + bonus +
-                ", certificacoesCulinarias='" + certificacoesCulinarias + '\'' +
-                ", experienciaNaCozinha='" + experienciaNaCozinha + '\'' +
+                ", certificacoesCulinarias='" + certificacaoCulinaria + '\'' +
                 '}';
     }
 }

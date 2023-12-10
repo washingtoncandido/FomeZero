@@ -1,11 +1,19 @@
 package classes;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import java.util.List;
-
+@Entity
 public class ServicosGerais extends Funcionario {
 
     private String servicoAtual;
+    @ElementCollection
+    @JoinTable(
+            name = "servicos_especialidades",
+            joinColumns = @JoinColumn(name = "servicos_id")
+    )
     private List<String> especialidades;
     private double bonusDeInsalubridade;
 

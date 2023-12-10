@@ -81,4 +81,6 @@ public abstract class Funcionario {
 //	public void exibirFuncionario(){
 //		System.out.println("nome do Funcionario:" this.nome);
 //	}
+
+
 }

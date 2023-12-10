@@ -51,11 +51,14 @@ public class Entregador extends Funcionario {
         this.gorjeta = gorjeta;
     }
 
-
     @Override
     public String toString() {
         return "Entregador{" +
-                "transporteDeEntrega='" + transporteDeEntrega + '\'' +
+                "id='" + super.getId() + '\'' +
+                ", nome='" + super.getNome() + '\'' +
+                ", endereco='" + super.getEndereco() + '\'' +
+                ", salario='" + super.getSalario() + '\'' +
+                ", transporteDeEntrega='" + transporteDeEntrega + '\'' +
                 ", rotaDeEntrega='" + rotaDeEntrega + '\'' +
                 ", telefone='" + telefone + '\'' +
                 ", gorjeta=" + gorjeta +
