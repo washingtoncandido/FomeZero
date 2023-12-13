@@ -1,0 +1,15 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+src/main/resources
+src/resources/META-INF/persistence.xml
+
+/JPA.iml
+
+../.idea
+
+/compiler.xml
+/jarRepositories.xml
+/misc.xml
+/vcs.xml
+../JPA.iml

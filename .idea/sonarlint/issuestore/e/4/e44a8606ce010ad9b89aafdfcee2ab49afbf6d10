@@ -1,8 +1,12 @@
 
 v
-java:S22935"YReplace the type specification in this constructor call with the diamond operator ("<>").(–Ê·8Ó•éÂÂ1
-]	java:S125"<This block of commented-out lines of code should be removed.(—Ø®åûÿÿÿÿ8§–éÂÂ1
-M
-java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8Œ—éÂÂ1
-P
-java:S1128".Remove this unused import 'java.util.Scanner'.(ÒÜÅ¸úÿÿÿÿ8—éÂÂ1
+java:S22930"YReplace the type specification in this constructor call with the diamond operator ("<>").(îŸú8“¸œÃ1
+{
+java:S22931"YReplace the type specification in this constructor call with the diamond operator ("<>").(ªñœ´üÿÿÿÿ8•¸œÃ1
+u
+java:S22932"YReplace the type specification in this constructor call with the diamond operator ("<>").(èøË8–¸œÃ1
+]	java:S125"<This block of commented-out lines of code should be removed.(—Ø®åûÿÿÿÿ8§–éÂÂ1
+]	java:S125"<This block of commented-out lines of code should be removed.(’¦õœıÿÿÿÿ8Â¸œÃ1
+]	java:S125H"<This block of commented-out lines of code should be removed.(ªñÕÌùÿÿÿÿ8Òß Ã1
+]	java:S125O"<This block of commented-out lines of code should be removed.(ñäè‰ÿÿÿÿÿ8â¸œÃ1
+]	java:S125X"<This block of commented-out lines of code should be removed.(óƒÕ²üÿÿÿÿ8å¸œÃ1

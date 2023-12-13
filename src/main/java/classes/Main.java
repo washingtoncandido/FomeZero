@@ -37,10 +37,11 @@ public class Main {
 		// ----------------- buscar --------------------------------
 
 		Funcionario aluno = entity.find(Funcionario.class, 1);
-		Estado estado = entity.find(Estado.class, 1);
+
+
 
 		System.out.println(aluno);
-		System.out.println(estado);
+
 
 //		// ----------------- Atualizar -----------------------------------
 //		entity.getTransaction().begin();
@@ -69,6 +70,6 @@ public class Main {
 //
 //		entity.close();
 //		entityFactory.close();
-	}
+}
 
 }

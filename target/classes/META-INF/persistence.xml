@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
-             version="2.2">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+	version="2.2">
 
-     <persistence-unit name="PersistenceUnitJPA">
+	<persistence-unit name="PersistenceUnitJPA">
 
-        <description> arquivo de persistencia JPA </description>
+		<description> arquivo de persistencia JPA </description>
 
+<<<<<<< HEAD
         <!-- Implementacao do JPA -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!--  <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
         <class>classes.Funcionario</class>
         <class>classes.Estado</class>
+         <class>classes.Cozinheiro</class>
+         <class>classes.Entregador</class>
+         <class>classes.Ingredientes</class>
+         <class>classes.IngredientesPa</class>
+         <class>classes.IngredientesFrios</class>
+         <class>classes.Produto</class>
+         <class>classes.ServicosGerais</class>
 
         <properties>
             <!-- Configuracoes do banco de dados -->
@@ -24,18 +32,45 @@
             <property name="javax.persistence.jdbc.password" value="postgres" />
 
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+=======
+		<!-- Implementacao do JPA -->
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<!--
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
+		<class>classes.Funcionario</class>
+		<class>classes.Estado</class>
+		<class>classes.Entregador</class>
+		<class>classes.Cozinheiro</class>
+		<class>classes.Ingredientes</class>
+		<class>classes.Produto</class>
+		<class>classes.ProdutoIngrediente</class>
+>>>>>>> 5524c63997816d802af3772e70995ea14061d63f
 
 
+		<properties>
+			<!-- Configuracoes do banco de dados -->
 
-            <!-- Configuracoes do Hibernate-->
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:postgresql://localhost:5432/postgres" />
 
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
 
-            <property name="hibernate.show_sql" value="true" />
+			<property name="javax.persistence.jdbc.password" value="admin" />
 
-            <property name="hibernate.format_sql" value="false" />
+			<property name="javax.persistence.jdbc.driver"
+				value="org.postgresql.Driver" />
 
-            <property name="hibernate.hbm2ddl.auto" value="create" />
-        </properties>
-    </persistence-unit>
+
+			<!-- Configuracoes do Hibernate-->
+
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.PostgreSQLDialect" />
+
+			<property name="hibernate.show_sql" value="true" />
+
+			<property name="hibernate.format_sql" value="false" />
+
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+		</properties>
+	</persistence-unit>
 </persistence>
