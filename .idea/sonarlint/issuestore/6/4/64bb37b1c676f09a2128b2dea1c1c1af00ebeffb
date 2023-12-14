@@ -1,6 +1,2 @@
 
-b	java:S107"AConstructor has 8 parameters, which is greater than 7 authorized.(¼“çÆüÿÿÿÿ8™•ÊƒÃ1
-`
-java:S1128"CRemove this unused import 'javax.persistence.PrimaryKeyJoinColumn'.(Ğó§í8¦•ÊƒÃ1
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8§•ÊƒÃ1
+b	java:S107"AConstructor has 8 parameters, which is greater than 7 authorized.(¼“çÆüÿÿÿÿ8à­ŒÜÄ1

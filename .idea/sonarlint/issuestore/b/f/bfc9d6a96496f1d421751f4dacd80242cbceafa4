@@ -1,10 +1,11 @@
 
 V
-java:S5993"9Change the visibility of this constructor to "protected".(œïÑé8îóúÂÂ1
-E
-java:S1068
-"(Remove this unused "nome" private field.(«Ÿ¡ù8ˆ±ÃÂ1
-N
-java:S1068",Remove this unused "endereco" private field.(Å¶§ÿüÿÿÿÿ8ˆ±ÃÂ1
+java:S5993"9Change the visibility of this constructor to "protected".(œïÑé8¶ä‰ÜÄ1
+X	java:S125"<This block of commented-out lines of code should be removed.(½ıƒó8ãí€ØÄ1
+]	java:S125"<This block of commented-out lines of code should be removed.(Ôş˜Âúÿÿÿÿ8ñÂáÄ1
+X	java:S1259"<This block of commented-out lines of code should be removed.(Ñ¦ø±8ºò¾ØÄ1
+X	java:S125="<This block of commented-out lines of code should be removed.(íÈµ­8¼¨¿ØÄ1
+X	java:S125I"<This block of commented-out lines of code should be removed.(ŞÄÙÏ8—†ÄáÄ1
+W	java:S125Q"<This block of commented-out lines of code should be removed.(îÉÇT8¢¿Ã»Ä1
 H
-java:S1068"+Remove this unused "salario" private field.(È“ïë8öÏÃÂ1
+java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü8˜†ÄáÄ1

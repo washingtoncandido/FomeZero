@@ -15,3 +15,9 @@ sonarlint/issuestore/e/4/e44a8606ce010ad9b89aafdfcee2ab49afbf6d10
 /vcs.xml
 ../JPA.iml
 
+../.idea
+../src
+../src/main/java/Main.java
+src/main/java/Main.java
+src/main/java/MainTest.java
+../target

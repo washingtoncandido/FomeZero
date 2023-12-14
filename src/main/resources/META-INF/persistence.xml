@@ -8,7 +8,6 @@
 
 		<description> arquivo de persistencia JPA </description>
 
-<<<<<<< HEAD
         <!-- Implementacao do JPA -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!--  <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
@@ -21,6 +20,9 @@
          <class>classes.IngredientesFrios</class>
          <class>classes.Produto</class>
          <class>classes.ServicosGerais</class>
+        <class>classes.Gerente</class>
+        <class>classes.Entregador</class>
+
 
         <properties>
             <!-- Configuracoes do banco de dados -->
@@ -32,33 +34,6 @@
             <property name="javax.persistence.jdbc.password" value="postgres" />
 
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-=======
-		<!-- Implementacao do JPA -->
-		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<!--
-		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
-		<class>classes.Funcionario</class>
-		<class>classes.Estado</class>
-		<class>classes.Entregador</class>
-		<class>classes.Cozinheiro</class>
-		<class>classes.Ingredientes</class>
-		<class>classes.Produto</class>
-		<class>classes.ProdutoIngrediente</class>
->>>>>>> 5524c63997816d802af3772e70995ea14061d63f
-
-
-		<properties>
-			<!-- Configuracoes do banco de dados -->
-
-			<property name="javax.persistence.jdbc.url"
-				value="jdbc:postgresql://localhost:5432/postgres" />
-
-			<property name="javax.persistence.jdbc.user" value="postgres" />
-
-			<property name="javax.persistence.jdbc.password" value="admin" />
-
-			<property name="javax.persistence.jdbc.driver"
-				value="org.postgresql.Driver" />
 
 
 			<!-- Configuracoes do Hibernate-->

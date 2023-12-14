@@ -1,7 +1,8 @@
 
-J
-java:S1172!"4Remove this unused method parameter "igredientesPa".(÷éœç
-S
-java:S1128"=Remove this unused import 'javax.persistence.GeneratedValue'.(¤®À‚
-S
-java:S1128"=Remove this unused import 'javax.persistence.GenerationType'.(ý÷õ¡
+^
+java:S49739"<Strings and Boxed types should be compared using "equals()".(ÃÞƒŸþÿÿÿÿ8˜Æš»Ä1
+j	java:S1006"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªû8ÂÇš»Ä1
+G
+java:S11726"*Remove this unused method parameter "cod".(ªû8ËÇš»Ä1
+T
+java:S3972;"7Move this "if" to a new line or add the missing "else".(æÙä¬8ÚÇš»Ä1
