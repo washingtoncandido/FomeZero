@@ -1,14 +1,12 @@
 package dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import java.util.List;
-
 import classes.Entregador;
-import classes.Funcionario;
-import classes.Gerente;
 
 public class EntregadorDAO {
 
@@ -92,10 +90,6 @@ public class EntregadorDAO {
                 entregador.setNome(novoNome);
                 entregador.setEndereco(novoEndereco);
                 entregador.setSalario(novoSalario);
-                entregador.setTransporteDeEntrega(novoTransporteDeEntrega);
-                entregador.setRotaDeEntrega(novaRotaDeEntrega);
-                entregador.setTelefone(novoTelefone);
-                entregador.setGorjeta(novaGorjeta);
             }
             entityManager.merge(entregador);
             entityManager.getTransaction().commit();

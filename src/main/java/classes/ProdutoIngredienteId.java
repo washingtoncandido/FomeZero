@@ -16,6 +16,4 @@ public class ProdutoIngredienteId implements Serializable {
     @ManyToOne
     @JoinColumn(name = "ingrediente_id")
     private Ingredientes ingrediente;
-
-    // construtores, equals, hashCode, getters e setters
 }
