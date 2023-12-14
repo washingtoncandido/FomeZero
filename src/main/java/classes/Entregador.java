@@ -1,15 +1,17 @@
 package classes;
 
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import java.util.List;
-
+@Entity
 public class Entregador extends Funcionario {
     private String transporteDeEntrega;
     private String rotaDeEntrega;
     private String telefone;
     private double gorjeta;
 
-    public Entregador(int id, String nome, String endereco, Estado estado, double salario, String transporteDeEntrega, String rotaDeEntrega, String telefone, double gorjeta) {
-        super(id, nome, endereco, estado, salario);
+    public Entregador(int id, String nome, String endereco, double salario, String transporteDeEntrega, String rotaDeEntrega, String telefone, double gorjeta) {
+        super(id, nome, endereco, salario);
         this.transporteDeEntrega = transporteDeEntrega;
         this.rotaDeEntrega = rotaDeEntrega;
         this.telefone = telefone;
@@ -52,7 +54,11 @@ public class Entregador extends Funcionario {
     @Override
     public String toString() {
         return "Entregador{" +
-                "transporteDeEntrega='" + transporteDeEntrega + '\'' +
+                "id='" + super.getId() + '\'' +
+                ", nome='" + super.getNome() + '\'' +
+                ", endereco='" + super.getEndereco() + '\'' +
+                ", salario='" + super.getSalario() + '\'' +
+                ", transporteDeEntrega='" + transporteDeEntrega + '\'' +
                 ", rotaDeEntrega='" + rotaDeEntrega + '\'' +
                 ", telefone='" + telefone + '\'' +
                 ", gorjeta=" + gorjeta +

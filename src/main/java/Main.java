@@ -1,18 +1,13 @@
- 
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaBuilder.In;
-
-
-import classes.Estado;
 import classes.Ingredientes;
 import classes.Produto;
 import dao.ProdutoDAO;
@@ -54,10 +49,14 @@ public class Main {
 		conjuntoIngredientesFrankistai.add(gorgonzola);
 		conjuntoIngredientesFrankistai.add(cebola);
 		conjuntoIngredientesFrankistai.add(tomate);
-		conjuntoIngredientesFrankistai.add(brie);
+		conjuntoIngredientesFrankistai.add(brie);		
 
+<<<<<<< HEAD
 		//gravando dados no banco  de ingredientes
 		entity.getTransaction().begin();		
+=======
+		entity.getTransaction().begin();
+>>>>>>> c235f497fcedf1c398c429984b859495ea144c9b
 		entity.persist(camembert);
 		entity.persist(carne);
 		entity.persist(mortadela);

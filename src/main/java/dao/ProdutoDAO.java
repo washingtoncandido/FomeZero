@@ -4,10 +4,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import classes.Ingredientes;
-import classes.Produto;
+import classes.*;
 
 import java.util.List;
+import java.util.Set;
 
 public class ProdutoDAO {
 
@@ -20,19 +20,54 @@ public class ProdutoDAO {
 
 	// Salvando Produto no banco de dados
 	public void save(Produto produto) {
-		entityManager.persist(produto);
+		try {
+			entityManager.getTransaction().begin();
+			entityManager.persist(produto);
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("mensagem de erro: " + e.getMessage());
+			entityManager.getTransaction().rollback();
+		}
 	}
 
-	// retorna um produto por ID
-	public Produto searchPorID(Integer id) {
-		return entityManager.find(Produto.class, id);
+	// retorna um produto por ID;  e por nome;
+	public Produto searchPorId(Integer cod) {
+		try {
+			return entityManager.find(Produto.class, cod);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("mensagem de erro: " + e.getMessage());
+			return null;
+		}
+	}
+	public Produto searchPorNome(String nome) {
+		try {
+			return entityManager.find(Produto.class, nome);
+		} catch(Exception e){
+			e.printStackTrace();
+			System.out.println("mensagem de erro: " + e.getMessage());
+			return null;
+		}
 	}
 
 	// retorna todos os produto da tabela produto
+<<<<<<< HEAD
     public List<Produto> listAllProduct() {
         return entityManager.createQuery("SELECT p FROM Produto p", Produto.class)
             .getResultList();
     }
+=======
+	public List<Produto> listAllEntregador() {
+		try {
+			return entityManager.createQuery("select * from produto ", Produto.class).getResultList();
+		} catch(Exception e){
+			e.printStackTrace();
+			System.out.println("mensagem de erro: " + e.getMessage());
+			return null;
+		}
+	}
+>>>>>>> c235f497fcedf1c398c429984b859495ea144c9b
 
 	// Retorna a lista de ingrediente de um produto
 	public List<Ingredientes> listAllIngredientProduct(Integer produtId) {
@@ -48,9 +83,29 @@ public class ProdutoDAO {
 			entityManager.remove(produto);
 			produto.exibirProduto();
 			entityManager.getTransaction().commit();
-			
+
 		} else {
 			System.out.println("produto não encontrado");
+		}
+	}
+	public void updateProduto(Integer cod, String novoNome, Double NovoPreco,
+							  Boolean novaOferta, Set<Ingredientes> NovosIgredientes) {
+		try {
+			entityManager.getTransaction().begin();
+			Produto produto = entityManager.find(Produto.class, cod);
+
+//			if(produto != null){
+//				produto.
+//				produto.
+//				produto.
+//				produto.
+//			}
+			entityManager.merge(produto);
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("mensagem de erro: " + e.getMessage());
+			entityManager.getTransaction().rollback();
 		}
 	}
 
