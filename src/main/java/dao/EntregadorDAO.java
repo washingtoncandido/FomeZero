@@ -7,8 +7,6 @@ import javax.persistence.Persistence;
 import java.util.List;
 
 import classes.Entregador;
-import classes.Funcionario;
-import classes.Gerente;
 
 public class EntregadorDAO {
 
@@ -22,15 +20,12 @@ public class EntregadorDAO {
 
     public void save(Entregador entregador) {
         try {
-            //abro
             entityManager.getTransaction().begin();
             entityManager.persist(entregador);
-            //pra salvar no bd
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("mensagem de erro: " + e.getMessage());
-            //rolback desfaz a alteraçao no banco
             entityManager.getTransaction().rollback();
         }
     }
@@ -81,21 +76,13 @@ public class EntregadorDAO {
             entityManager.getTransaction().rollback();
         }
     }
-    public void updateEntregador(int id, String novoNome, String novoEndereco,
-                                 double novoSalario, String novoTransporteDeEntrega, String novaRotaDeEntrega,
-                                 String novoTelefone, double novaGorjeta) {
+    public void updateEntregador(int id, String novoNome) {
         try {
             entityManager.getTransaction().begin();
             Entregador entregador = entityManager.find(Entregador.class, id);
 
             if(entregador != null){
                 entregador.setNome(novoNome);
-                entregador.setEndereco(novoEndereco);
-                entregador.setSalario(novoSalario);
-                entregador.setTransporteDeEntrega(novoTransporteDeEntrega);
-                entregador.setRotaDeEntrega(novaRotaDeEntrega);
-                entregador.setTelefone(novoTelefone);
-                entregador.setGorjeta(novaGorjeta);
             }
             entityManager.merge(entregador);
             entityManager.getTransaction().commit();
@@ -105,12 +92,9 @@ public class EntregadorDAO {
             entityManager.getTransaction().rollback();
         }
     }
-
     public void fecharEntityManager() {
         if (entityManager != null && entityManager.isOpen()) {
             entityManager.close();
-
         }
     }
-
 }
