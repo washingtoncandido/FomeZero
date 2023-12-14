@@ -3,8 +3,8 @@ import javax.persistence.Entity;
 @Entity
 public class Entregador extends Funcionario {
 
-    public Entregador(int id, String nome, String endereco, double salario) {
-        super(id, nome, endereco, salario);
+    public Entregador(int id, String nome, String endereco) {
+        super(id, nome);
     }
 
     @Override
@@ -12,8 +12,6 @@ public class Entregador extends Funcionario {
         return "Entregador{" +
                 "id='" + super.getId() + '\'' +
                 ", nome='" + super.getNome() + '\'' +
-                ", endereco='" + super.getEndereco() + '\'' +
-                ", salario='" + super.getSalario() + '\'' +
                 '}';
     }
 }
