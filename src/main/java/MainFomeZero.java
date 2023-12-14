@@ -1,30 +1,26 @@
- 
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaBuilder.In;
 
-
-import classes.Estado;
 import classes.Ingredientes;
 import classes.Produto;
 import dao.ProdutoDAO;
-import ultil.Validador;
 
-public class Main {
-
+public class MainFomeZero {
+	
+	ProdutoDAO produtoDao = new ProdutoDAO();
 	public static void main(String[] args) {
+		
+		
 		EntityManagerFactory entityFactory = Persistence.createEntityManagerFactory("PersistenceUnitJPA");
 		EntityManager entity = entityFactory.createEntityManager();
-		
-		ProdutoDAO produtoDao = new ProdutoDAO();
+
 		Set<Produto> conjuntoProdutos = new HashSet<Produto>();
 		Set<Ingredientes> conjuntoIngredientesFrankistai = new HashSet<Ingredientes>();
 		Set<Ingredientes> conjuntoIngredientesLobisome = new HashSet<Ingredientes>();
@@ -74,27 +70,79 @@ public class Main {
 		entity.persist(frankistai);
 		entity.persist(lobisome);
 		entity.getTransaction().commit();
-		
-		
-		//Buscando produto espercifico e listando os ingrediente dele 
-		//pergunta ao cliente qual produto ele deseja 
-		Produto produtoEcontrado = produtoDao.searchPorID(123);
-		System.out.println("Produto encontrado");
-		produtoEcontrado.exibirProduto();
-		System.out.println("Lista de ingrediente do produto encontrado");
-		List<Ingredientes> ingredientesList = produtoDao.listAllIngredientProduct(123);
-		for (Ingredientes ingrediente : ingredientesList) {
-		    System.out.println("Nome: " + ingrediente.getNome());
-		}
-		
-		
-		produtoDao.deletProduct(123);
-		//System.out.println(produtoEcontrado);
+		Scanner scanner = new Scanner(System.in);
+	
+		boolean continuar = true;
 
-		
+		do {
+			exibirMenu();
 
-		entity.close();
-		entityFactory.close();
+			// Solicita ao usuário para fazer uma escolha
+			System.out.print("Digite sua escolha: ");
+			int escolha = scanner.nextInt();
+
+			// Executa a ação com base na escolha do usuário
+			switch (escolha) {
+			case 1:
+				System.out.println("Catalogo");
+				// Obtém a lista de todos os produtos
+				exibirAllProduct(produtoDao.listAllProduct());
+
+				break;
+			case 2:
+				System.out.println("Fazer Pedido");
+				// Adicione a lógica da ação desejada aqui
+				break;
+			case 3:
+				System.out.println("Você escolheu a opção 3 - Mais uma ação.");
+				// Adicione a lógica da ação desejada aqui
+				break;
+			case 0:
+				System.out.println("Saindo do programa. Até mais!");
+				continuar = false;
+				break;
+			default:
+				System.out.println("Escolha inválida. Por favor, escolha novamente.");
+			}
+
+			// Verifica se o usuario deseja voltar ao inicio
+			if (continuar) {
+				continuar = perguntarSeDesejaContinuar(scanner);
+			}
+
+		} while (continuar);
+
+		// Fecha o scanner ao finalizar o programa
+		scanner.close();
 	}
 
+	private static void exibirMenu() {
+		System.out.println("\n==== BEM VINDO AO FOME ZERO ====");
+		System.out.println("\n==== ESCOLHA UMA OPÇÃO ====");
+		System.out.println("1. Ver Catalogo");
+		System.out.println("2. Fazer pedido ");
+		System.out.println("3. Opção 3");
+		System.out.println("0. Sair");
+	}
+
+	private static void exibirAllProduct(List<Produto> listaDeProdutos) {
+		// Iterage sobre a lista e exibe cada produto
+		for (Produto encontrado : listaDeProdutos) {
+			encontrado.exibirProduto();
+			exibirIngredientProduct(encontrado.getCod());
+		}
+	}
+
+	private static void exibirIngredientProduct(int id) {
+		List<Ingredientes> ingredientesList = produtoDao.listAllIngredientProduct(id);
+		for (Ingredientes ingrediente : ingredientesList) {
+			System.out.println("Nome: " + ingrediente.getNome());
+		}
+	}
+
+	private static boolean perguntarSeDesejaContinuar(Scanner scanner) {
+		System.out.print("Deseja voltar ao início (sim/não)? ");
+		String resposta = scanner.next().toLowerCase();
+		return resposta.equals("sim");
+	}
 }

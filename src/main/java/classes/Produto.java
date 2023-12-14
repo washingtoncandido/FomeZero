@@ -1,6 +1,7 @@
 package classes;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -50,6 +51,10 @@ public class Produto {
 		System.out.println("Código do produto: " + this.cod + "\nNome do produto: " + this.nome + "\nOferta? " + this.oferta + "\nPreço do produto: " + this.preco);
 	}
 	
+	public Integer getCod() {
+		return cod;
+	}
+
 	//Buscando produto que deseja atualizar por ID
 	public void UpdateProduto(Integer buscar, Integer cod,String nome,Double preco) {
 		

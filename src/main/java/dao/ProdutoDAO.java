@@ -29,9 +29,10 @@ public class ProdutoDAO {
 	}
 
 	// retorna todos os produto da tabela produto
-	public List<Produto> listAllProduct() {
-		return entityManager.createQuery("Select p from Produto p ", Produto.class).getResultList();
-	}
+    public List<Produto> listAllProduct() {
+        return entityManager.createQuery("SELECT p FROM Produto p", Produto.class)
+            .getResultList();
+    }
 
 	// Retorna a lista de ingrediente de um produto
 	public List<Ingredientes> listAllIngredientProduct(Integer produtId) {
