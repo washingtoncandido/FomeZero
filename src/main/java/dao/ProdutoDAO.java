@@ -31,7 +31,7 @@ public class ProdutoDAO {
 		}
 	}
 
-	// retorna um produto por ID;  e por nome;
+	// retorna um produto por ID; e por nome;
 	public Produto searchPorId(Integer cod) {
 		try {
 			return entityManager.find(Produto.class, cod);
@@ -41,33 +41,26 @@ public class ProdutoDAO {
 			return null;
 		}
 	}
+
 	public Produto searchPorNome(String nome) {
 		try {
 			return entityManager.find(Produto.class, nome);
-		} catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("mensagem de erro: " + e.getMessage());
 			return null;
 		}
 	}
 
-	// retorna todos os produto da tabela produto
-<<<<<<< HEAD
-    public List<Produto> listAllProduct() {
-        return entityManager.createQuery("SELECT p FROM Produto p", Produto.class)
-            .getResultList();
-    }
-=======
-	public List<Produto> listAllEntregador() {
+	public List<Produto> listAllProduct() {
 		try {
-			return entityManager.createQuery("select * from produto ", Produto.class).getResultList();
-		} catch(Exception e){
+			return entityManager.createQuery("SELECT p FROM Produto p", Produto.class).getResultList();
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("mensagem de erro: " + e.getMessage());
 			return null;
 		}
 	}
->>>>>>> c235f497fcedf1c398c429984b859495ea144c9b
 
 	// Retorna a lista de ingrediente de um produto
 	public List<Ingredientes> listAllIngredientProduct(Integer produtId) {
@@ -88,8 +81,9 @@ public class ProdutoDAO {
 			System.out.println("produto não encontrado");
 		}
 	}
-	public void updateProduto(Integer cod, String novoNome, Double NovoPreco,
-							  Boolean novaOferta, Set<Ingredientes> NovosIgredientes) {
+
+	public void updateProduto(Integer cod, String novoNome, Double NovoPreco, Boolean novaOferta,
+			Set<Ingredientes> NovosIgredientes) {
 		try {
 			entityManager.getTransaction().begin();
 			Produto produto = entityManager.find(Produto.class, cod);

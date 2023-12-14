@@ -1,17 +1,15 @@
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaBuilder.In;
+
 import classes.Ingredientes;
 import classes.Produto;
 import dao.ProdutoDAO;
-import ultil.Validador;
 
 public class Main {
 
@@ -51,12 +49,9 @@ public class Main {
 		conjuntoIngredientesFrankistai.add(tomate);
 		conjuntoIngredientesFrankistai.add(brie);		
 
-<<<<<<< HEAD
 		//gravando dados no banco  de ingredientes
 		entity.getTransaction().begin();		
-=======
-		entity.getTransaction().begin();
->>>>>>> c235f497fcedf1c398c429984b859495ea144c9b
+
 		entity.persist(camembert);
 		entity.persist(carne);
 		entity.persist(mortadela);
@@ -77,9 +72,7 @@ public class Main {
 		
 		//Buscando produto espercifico e listando os ingrediente dele 
 		//pergunta ao cliente qual produto ele deseja 
-		Produto produtoEcontrado = produtoDao.searchPorID(123);
-		System.out.println("Produto encontrado");
-		produtoEcontrado.exibirProduto();
+	
 		System.out.println("Lista de ingrediente do produto encontrado");
 		List<Ingredientes> ingredientesList = produtoDao.listAllIngredientProduct(123);
 		for (Ingredientes ingrediente : ingredientesList) {
