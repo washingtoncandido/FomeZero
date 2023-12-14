@@ -110,7 +110,7 @@ public class MainFomeZero {
 			case 2:
 				System.out.println("Fazer Pedido");
 				boolean adicionarOutroProduto = true;
-
+				
 				Pedido novo = new Pedido();
 				System.out.println("Lista de produtos");
 				exibirAllProduct(produtoDao.listAllProduct());

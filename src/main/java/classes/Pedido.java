@@ -43,21 +43,6 @@ public class Pedido {
 		return numPedido;
 	}
 
-//	//gerador de pedido
-//	private String geradorRandomNumPedido() {
-//		 long timestamp = System.currentTimeMillis();
-//		int length = 6;
-//		String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-//		StringBuilder randomString = new StringBuilder(length);
-//		Random random = new Random();
-//
-//		for (int i = 0; i < length; i++) {
-//			int index = random.nextInt(characters.length());
-//			randomString.append(characters.charAt(index));
-//		}
-//		return timestamp + randomString.toString();
-//	}
-
 	public List<Produto> getProdutos() {
 		if (produtos == null) {
 			produtos = new ArrayList<>();
@@ -88,7 +73,7 @@ public class Pedido {
 		this.entregador = entregador;
 		 atualizarTotal();
 	}
-
+ 
 	public double getTotal() {
 		return this.total;
 	}

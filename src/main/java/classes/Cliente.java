@@ -29,7 +29,6 @@ public class Cliente {
 		this.nome = nome;
 		this.telefone = telefone;
 	}
-
 	public String getNome() {
 		return nome;
 	}

@@ -44,7 +44,7 @@ public class Produto {
 	public Integer getCod() {
 		return this.cod;
 	}
-	
+	  
 	public Double getPreco() {
 		return this.preco;
 	}
