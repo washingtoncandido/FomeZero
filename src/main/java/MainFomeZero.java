@@ -202,7 +202,7 @@ public class MainFomeZero {
 				for(Pedido pedido : listaDePedidos){
 					System.out.println("Numero do pedido:" + pedido.getNumPedido());
 					System.out.println("Entregador:" + pedido.getEntregador().getNome());
-					System.out.println("Cliente:" + pedido.getCliente().getNome() + pedido.getCliente().getTelefone());
+					System.out.println("Cliente:" + pedido.getCliente().getNome() + pedido.getCliente().getTelef());
 					System.out.println("Total do pedido:" + pedido.getTotal());
 					System.out.println("Produtos:" + pedido.getProdutos());
 				}
