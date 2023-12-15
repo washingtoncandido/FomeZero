@@ -8,32 +8,30 @@
 
 		<description> arquivo de persistencia JPA </description>
 
-        <!-- Implementacao do JPA -->
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <!--  <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
+
+		<!-- Implementacao do JPA -->
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<!--
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
+
         <class>classes.Funcionario</class>
-        <class>classes.Estado</class>
-         <class>classes.Cozinheiro</class>
          <class>classes.Entregador</class>
          <class>classes.Ingredientes</class>
-         <class>classes.IngredientesPa</class>
-         <class>classes.IngredientesFrios</class>
          <class>classes.Produto</class>
-         <class>classes.ServicosGerais</class>
-        <class>classes.Gerente</class>
-        <class>classes.Entregador</class>
 
+		<properties>
+			<!-- Configuracoes do banco de dados -->
 
-        <properties>
-            <!-- Configuracoes do banco de dados -->
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:postgresql://localhost:5432/postgres" />
 
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
 
-            <property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="postgres" />
 
-            <property name="javax.persistence.jdbc.password" value="postgres" />
+			<property name="javax.persistence.jdbc.driver"
+				value="org.postgresql.Driver" />
 
-            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 
 
 			<!-- Configuracoes do Hibernate-->
@@ -41,7 +39,7 @@
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.PostgreSQLDialect" />
 
-			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.show_sql" value="false" />
 
 			<property name="hibernate.format_sql" value="false" />
 

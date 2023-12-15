@@ -1,9 +1,6 @@
 package classes;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Endereco {
@@ -16,6 +13,9 @@ public class Endereco {
     private String cidade;
     private String estado;
     private String cep;
+
+    @OneToOne(mappedBy = "Endereco")
+    private Cliente cliente;
     public Endereco(String rua, int numero, String bairro, String cidade, String estado, String cep) {
         this.rua = rua;
         this.numero = numero;
