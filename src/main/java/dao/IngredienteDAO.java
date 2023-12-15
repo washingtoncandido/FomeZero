@@ -9,14 +9,8 @@ import javax.persistence.Persistence;
 import classes.Ingredientes;
 import classes.Produto;
 
-public class IngredienteDAO {
+public class IngredienteDAO extends DataDAO {
 
-	private final EntityManager entityManager;
-
-	public IngredienteDAO() {
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PersistenceUnitJPA");
-		entityManager = entityManagerFactory.createEntityManager();
-	}
 
 	// Salvando Produto no banco de dados
 	public void save(Ingredientes ingrediente) {

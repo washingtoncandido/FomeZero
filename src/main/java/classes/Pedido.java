@@ -12,7 +12,7 @@ public class Pedido {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String numPedido;
+	private Integer numPedido;
 
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
@@ -37,10 +37,6 @@ public class Pedido {
 		this.entregador = entregador;
 		this.total = total;
 		atualizarTotal();
-	}
-
-	public String getId() {
-		return numPedido;
 	}
 
 	public List<Produto> getProdutos() {

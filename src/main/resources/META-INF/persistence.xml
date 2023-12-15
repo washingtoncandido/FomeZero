@@ -12,15 +12,10 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<!--
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
-   <class>classes.Funcionario</class>
-        <class>classes.Estado</class>
-         <class>classes.Cozinheiro</class>
-         <class>classes.Entregador</class>
-         <class>classes.Ingredientes</class>
-         <class>classes.IngredientesPa</class>
-         <class>classes.IngredientesFrios</class>
-         <class>classes.Produto</class>
-         <class>classes.ServicosGerais</class>
+		<class>classes.Funcionario</class>
+		<class>classes.Entregador</class>
+		<class>classes.Ingredientes</class>
+		<class>classes.Produto</class>
 
 
 		<properties>
