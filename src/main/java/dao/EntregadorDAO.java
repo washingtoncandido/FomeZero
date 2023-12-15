@@ -2,21 +2,11 @@ package dao;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import classes.Entregador;
 
-public class EntregadorDAO {
+public class EntregadorDAO extends DataDAO {
 
-    private final EntityManager entityManager;
 
-    public EntregadorDAO() {
-
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PersistenceUnitJPA");
-        entityManager = entityManagerFactory.createEntityManager();
-    }
 
     public void save(Entregador entregador) {
         try {

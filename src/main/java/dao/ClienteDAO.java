@@ -1,5 +1,5 @@
 package dao;
 
-public class ClienteDAO {
+public class ClienteDAO  extends DataDAO{
  
 }

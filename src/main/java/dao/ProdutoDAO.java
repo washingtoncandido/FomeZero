@@ -9,14 +9,8 @@ import classes.*;
 import java.util.List;
 import java.util.Set;
 
-public class ProdutoDAO {
+public class ProdutoDAO  extends DataDAO{
 
-	private final EntityManager entityManager;
-
-	public ProdutoDAO() {
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PersistenceUnitJPA");
-		entityManager = entityManagerFactory.createEntityManager();
-	}
 
 	// Salvando Produto no banco de dados
 	public void save(Produto produto) {

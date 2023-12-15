@@ -13,11 +13,10 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<!--
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
-
-        <class>classes.Funcionario</class>
-         <class>classes.Entregador</class>
-         <class>classes.Ingredientes</class>
-         <class>classes.Produto</class>
+		<class>classes.Funcionario</class>
+		<class>classes.Entregador</class>
+		<class>classes.Ingredientes</class>
+		<class>classes.Produto</class>
 
 		<properties>
 			<!-- Configuracoes do banco de dados -->

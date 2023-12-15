@@ -14,12 +14,19 @@ import classes.Entregador;
 import classes.Ingredientes;
 import classes.Pedido;
 import classes.Produto;
+import dao.EntregadorDAO;
+import dao.IngredienteDAO;
+import dao.PedidoDAO;
 import dao.ProdutoDAO;
 
 public class MainFomeZero {
 
 	public static void main(String[] args) {
 		ProdutoDAO produtoDao = new ProdutoDAO();
+		PedidoDAO pedidoDao = new PedidoDAO();
+		EntregadorDAO entregadoDao = new EntregadorDAO();
+		IngredienteDAO ingredienteDao = new IngredienteDAO();
+		
 
 		EntityManagerFactory entityFactory = Persistence.createEntityManagerFactory("PersistenceUnitJPA");
 		EntityManager entity = entityFactory.createEntityManager();
@@ -74,6 +81,7 @@ public class MainFomeZero {
 		entity.persist(lobisome);
 		entity.getTransaction().commit();
 		Scanner scanner = new Scanner(System.in);
+	
 
 		boolean continuar = true;
 
@@ -117,9 +125,10 @@ public class MainFomeZero {
 
 				while (adicionarOutroProduto) {
 					// Solicita ao usuário para fazer uma escolha do pedido
-					System.out.println("Digite o produto que deseja compra escolha: ");
-					int pedido = scanner.nextInt();
-					Produto produtoPedido = produtoDao.searchPorId(pedido);
+					System.out.println("Digite o produto que deseja compra: ");
+					int idProduto = scanner.nextInt();
+					
+					Produto produtoPedido = produtoDao.searchPorId(idProduto);
 					// Mostrando Produto escolhido para o pedido
 					System.out.print("Produto escolhido:");
 					produtoPedido.exibirProduto();
@@ -134,13 +143,12 @@ public class MainFomeZero {
 				Cliente cliente = criarCliente();
 				novo.setCliente(cliente);
 				novo.setEntregador(entregador);
-				entity.getTransaction().begin();
 				entity.persist(cliente);
-				entity.persist(entregador);
-				entity.persist(novo);
-
-				entity.getTransaction().commit();
-
+				entregadoDao.save(entregador);
+				pedidoDao.salvarPedido(novo);
+				
+				System.out.println("Pedido finalizado");
+				
 				break;
 			case 3:
 				System.out.println("Pesquiser o produto ");
