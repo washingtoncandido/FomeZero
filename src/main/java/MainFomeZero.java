@@ -24,14 +24,14 @@ import dao.ProdutoDAO;
 public class MainFomeZero {
 
 	public static void main(String[] args) {
-		ProdutoDAO produtoDao = new ProdutoDAO();
-		PedidoDAO pedidoDao = new PedidoDAO();
-		EntregadorDAO entregadoDao = new EntregadorDAO();
-		IngredienteDAO ingredienteDao = new IngredienteDAO();
-		ClienteDAO clienteDao = new ClienteDAO();
 
-		EntityManagerFactory entityFactory = Persistence.createEntityManagerFactory("PersistenceUnitJPA");
-		EntityManager entity = entityFactory.createEntityManager();
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PersistenceUnitJPA");
+
+		ProdutoDAO produtoDao = new ProdutoDAO(entityManagerFactory);
+		PedidoDAO pedidoDao = new PedidoDAO(entityManagerFactory);
+	
+		IngredienteDAO ingredienteDao = new IngredienteDAO(entityManagerFactory);
+		ClienteDAO clienteDao = new ClienteDAO(entityManagerFactory);
 
 		Set<Produto> conjuntoProdutos = new HashSet<Produto>();
 		Set<Ingredientes> conjuntoIngredientesFrankistai = new HashSet<Ingredientes>();
@@ -67,22 +67,30 @@ public class MainFomeZero {
 		// gravando dados no banco de ingredientes
 		ingredienteDao.save(camembert);
 		ingredienteDao.save(carne);
-		ingredienteDao.save(mortadela);
-		ingredienteDao.save(guarana);
-		ingredienteDao.save(brie);
-		ingredienteDao.save(gorgonzola);
-		ingredienteDao.save(batataIngl);
-		ingredienteDao.save(guarana);
-		ingredienteDao.save(tomate);
-		ingredienteDao.save(cebola);
-		ingredienteDao.save(mucarela);
 
+		ingredienteDao.save(mortadela);
+
+		ingredienteDao.save(guarana);
+
+		ingredienteDao.save(brie);
+
+		ingredienteDao.save(gorgonzola);
+
+		ingredienteDao.save(batataIngl);
+
+		ingredienteDao.save(guarana);
+
+		ingredienteDao.save(tomate);
+
+		ingredienteDao.save(cebola);
+
+		ingredienteDao.save(mucarela);
+		ingredienteDao.fecharConexao();
 		// gravando dados no banco de produtos
 		produtoDao.save(frankistai);
 		produtoDao.save(lobisome);
-		
-		Scanner scanner = new Scanner(System.in);
 	
+		Scanner scanner = new Scanner(System.in);
 
 		boolean continuar = true;
 
@@ -112,10 +120,11 @@ public class MainFomeZero {
 					}
 					System.out.println();
 				}
+
 				break;
 			case 2:
 				boolean adicionarOutroProduto = true;
-				
+
 				Pedido novo = new Pedido();
 				System.out.println("\nLista de produtos\n");
 				exibirAllProduct(produtoDao.listAllProduct());
@@ -124,7 +133,7 @@ public class MainFomeZero {
 					// Solicita ao usuário para fazer uma escolha do pedido
 					System.out.print("\nDigite o produto que deseja compra: ");
 					int idProduto = scanner.nextInt();
-					
+
 					Produto produtoPedido = produtoDao.searchPorId(idProduto);
 					// Mostrando Produto escolhido para o pedido
 					System.out.println("Produto escolhido:");
@@ -136,31 +145,30 @@ public class MainFomeZero {
 
 					adicionarOutroProduto = resposta.equalsIgnoreCase("sim");
 				}
+
 				Cliente cliente = criarCliente();
 				novo.setCliente(cliente);
 				novo.setEntregador(entregador);
-				
-				//Salvando no banco de dados os dado do pedido 
-				
-				clienteDao.save(cliente);;
+
+				// Salvando no banco de dados os dado do pedido
+
+				clienteDao.save(cliente);
+				EntregadorDAO entregadoDao = new EntregadorDAO(entityManagerFactory);
 				entregadoDao.save(entregador);
 				pedidoDao.save(novo);
-				
-				
-				//Buscando do banco as informações do pedido
+				// Buscando do banco as informações do pedido
 				System.out.println();
 				System.out.println("Pedido finalizado");
-	
+				
 				Pedido encontradoPedido = pedidoDao.searchPorId(novo.getNumPedido());
-				System.out.println("Pedido:");
-				
+				System.out.println();
 
-				List<Produto> idProduto = encontradoPedido.getProdutos();
-				//Mostrando detalhes do pedido
-				
+				List<Produto> listaProdutoPedido = encontradoPedido.getProdutos();
+				// Mostrando detalhes do pedido
+				System.out.print("Total de produto:"+ listaProdutoPedido.size());
+				System.out.println("Pedido:");
+				List<Integer> idProdutos = exibirIdProduct(listaProdutoPedido);
 				System.out.println("Total:" + encontradoPedido.getTotal());
-				List<Integer> idProdutos = exibirIdProduct(idProduto);
-				System.out.println("Total de produtos:"+idProduto.size() );
 				// Informando o usuario todos os produtos e os ingredientes de cada produto
 				for (Integer id : idProdutos) {
 					Produto encontrado = produtoDao.searchPorId(id);
@@ -172,12 +180,15 @@ public class MainFomeZero {
 					}
 					System.out.println();
 				}
-				Cliente clientePedido = clienteDao.searchPorId(encontradoPedido.getCliente().getId());
-				System.out.println("\n Cliente:"+clientePedido.getNome()+ ",telefon:"+ clientePedido.getTelefone());
-				
-				Entregador entregadorPedido = entregadoDao.searchPorId(encontradoPedido.getEntregador().getId());
-				System.out.println("\n Entregador:"+entregadorPedido.getNome());
-				
+
+				Cliente clientePedido = encontradoPedido.getCliente();
+				System.out.println("\n Cliente:" + clientePedido.getNome() + ",telefon:" + clientePedido.getTelefone());
+
+				System.out.println("\n Entregador:" + encontradoPedido.getEntregador().getNome());
+				pedidoDao.fecharConexao();
+				clienteDao.fecharConexao();
+				entregadoDao.fecharConexao();
+				pedidoDao.fecharConexao();
 				
 				break;
 			case 3:
@@ -187,17 +198,18 @@ public class MainFomeZero {
 				System.out.print("Digite o id do produto: ");
 				int escolhaId = scanner.nextInt();
 				Produto produtoEcontrado = produtoDao.searchPorId(escolhaId);
-				//retornando produto encontrado
+
+				// retornando produto encontrado
 				System.out.println();
 				System.out.println("Produto encontrado: ");
 				produtoEcontrado.exibirProduto();
-				//retornando ingrediente dos produto encontrado
+				// retornando ingrediente dos produto encontrado
 				System.out.println("Lista de ingrediente do produto: " + produtoEcontrado.getNome());
 				List<Ingredientes> ingredientesList = produtoDao.listAllIngredientProduct(escolhaId);
 				for (Ingredientes ingrediente : ingredientesList) {
 					System.out.println("  " + ingrediente.getNome());
 				}
-				
+
 				break;
 			case 4:
 				break;
@@ -218,9 +230,10 @@ public class MainFomeZero {
 		System.out.println("\n Saindo do programa. Até mais!");
 		System.out.println("Sistema finalizado");
 		// Fecha o scanner ao finalizar o programa
+
 		scanner.close();
 	}
-	
+
 	private static void exibirMenu() {
 		System.out.println("\n==== BEM VINDO AO FOME ZERO ====");
 		System.out.println("\n==== ESCOLHA UMA OPÇÃO ====");
@@ -243,14 +256,13 @@ public class MainFomeZero {
 		return new Cliente(nome, telefone);
 	}
 
-
-
 	private static void exibirAllProduct(List<Produto> listaDeProdutos) {
 		// Iterage sobre a lista e exibe cada produto
 		for (Produto encontrado : listaDeProdutos) {
 			encontrado.exibirProduto();
 		}
 	}
+
 	private static List<Integer> exibirIdPedido(List<Pedido> listaDePedido) {
 		// Iterage sobre a lista e exibe cada id do produto
 		List<Integer> idProduct = new ArrayList();

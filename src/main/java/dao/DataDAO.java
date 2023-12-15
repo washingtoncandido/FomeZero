@@ -1,18 +1,17 @@
 package dao;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public abstract class DataDAO {
 
-    protected EntityManagerFactory entityManagerFactory;
-    protected EntityManager entityManager;
+	  protected static EntityManagerFactory entityManagerFactory;
 
-    public DataDAO() {
-        this.entityManagerFactory = Persistence.createEntityManagerFactory("PersistenceUnitJPA");
-        this.entityManager = entityManagerFactory.createEntityManager();
-    }
+	    static {
+	        entityManagerFactory = Persistence.createEntityManagerFactory("PersistenceUnitJPA");
+	    }
 
-    public void fecharConexao() {
-        entityManager.close();
-        entityManagerFactory.close();
-    }
+ 
 }
+
