@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -14,6 +13,7 @@ import classes.Entregador;
 import classes.Ingredientes;
 import classes.Pedido;
 import classes.Produto;
+import dao.ClienteDAO;
 import dao.EntregadorDAO;
 import dao.IngredienteDAO;
 import dao.PedidoDAO;
@@ -22,20 +22,20 @@ import dao.ProdutoDAO;
 public class MainFomeZero {
 
 	public static void main(String[] args) {
-		ProdutoDAO produtoDao = new ProdutoDAO();
-		PedidoDAO pedidoDao = new PedidoDAO();
-		EntregadorDAO entregadoDao = new EntregadorDAO();
-		IngredienteDAO ingredienteDao = new IngredienteDAO();
-		
 
-		EntityManagerFactory entityFactory = Persistence.createEntityManagerFactory("PersistenceUnitJPA");
-		EntityManager entity = entityFactory.createEntityManager();
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PersistenceUnitJPA");
+
+		ProdutoDAO produtoDao = new ProdutoDAO(entityManagerFactory);
+		PedidoDAO pedidoDao = new PedidoDAO(entityManagerFactory);
+	
+		IngredienteDAO ingredienteDao = new IngredienteDAO(entityManagerFactory);
+		ClienteDAO clienteDao = new ClienteDAO(entityManagerFactory);
 
 		Set<Produto> conjuntoProdutos = new HashSet<Produto>();
 		Set<Ingredientes> conjuntoIngredientesFrankistai = new HashSet<Ingredientes>();
 		Set<Ingredientes> conjuntoIngredientesLobisome = new HashSet<Ingredientes>();
 
-		Entregador entregador = new Entregador(1, "washington");
+		Entregador entregador = new Entregador(1, "Tony");
 		Ingredientes carne = new Ingredientes(1, "moida", "sadia", conjuntoProdutos, 100, "FR");
 		Ingredientes guarana = new Ingredientes(2, "guaradana", "bovinos", conjuntoProdutos, 102, "FR");
 		Ingredientes mortadela = new Ingredientes(11, "mortadela", "bovinos", conjuntoProdutos, 102, "PA");
@@ -65,27 +65,30 @@ public class MainFomeZero {
 		// gravando dados no banco de ingredientes
 		ingredienteDao.save(camembert);
 		ingredienteDao.save(carne);
+
+
 		ingredienteDao.save(mortadela);
+
 		ingredienteDao.save(guarana);
+
 		ingredienteDao.save(brie);
+
 		ingredienteDao.save(gorgonzola);
+
 		ingredienteDao.save(batataIngl);
+
 		ingredienteDao.save(guarana);
+
 		ingredienteDao.save(tomate);
+
 		ingredienteDao.save(cebola);
+
 		ingredienteDao.save(mucarela);
-
-//		List<Produto> listaDeProdutos2 = (List<Produto>) new Produto(5,"lista de produtos 5",10.50,true, conjuntoIngredientesFrankistai);
-//		List<Produto> listaDeProdutos2 = new ArrayList<>();
-//		listaDeProdutos2.add(new Produto(5,"lista de produtos 5",10.50,true, conjuntoIngredientesFrankistai));
-//
-//		Cliente adriano = new Cliente("adriano", 45L);
-//		Pedido pedido1 = new Pedido(adriano,listaDeProdutos2,entregador,15.5);
-
+		ingredienteDao.fecharConexao();
 		// gravando dados no banco de produtos
 		produtoDao.save(frankistai);
 		produtoDao.save(lobisome);
-		
+
 		Scanner scanner = new Scanner(System.in);
 
 		boolean continuar = true;
@@ -99,10 +102,7 @@ public class MainFomeZero {
 			// Executa a ação com base na escolha do usuário
 			switch (escolha) {
 			case 1:
-				System.out.println();
-				System.out.println("Catalogo");
-				System.out.println();
-
+				System.out.println("\nCatalogo\n");
 				// Pegando todos os produtos do banco
 				List<Produto> listaDeProdutos = produtoDao.listAllProduct();
 				// armazenando ids do produtos
@@ -119,27 +119,27 @@ public class MainFomeZero {
 					}
 					System.out.println();
 				}
+
 				break;
 			case 2:
-				System.out.println("Fazer Pedido");
 				boolean adicionarOutroProduto = true;
-				
+
 				Pedido novo = new Pedido();
-				System.out.println("Lista de produtos");
+				System.out.println("\nLista de produtos\n");
 				exibirAllProduct(produtoDao.listAllProduct());
 
 				while (adicionarOutroProduto) {
 					// Solicita ao usuário para fazer uma escolha do pedido
-					System.out.println("Digite o produto que deseja compra: ");
+					System.out.print("\nDigite o produto que deseja compra: ");
 					int idProduto = scanner.nextInt();
-					
+
 					Produto produtoPedido = produtoDao.searchPorId(idProduto);
 					// Mostrando Produto escolhido para o pedido
-					System.out.print("Produto escolhido:");
+					System.out.println("Produto escolhido:");
 					produtoPedido.exibirProduto();
 					novo.adicionarProduto(produtoPedido);
 					// Pergunta se ele deseja adicionar outro produto
-					System.out.println("Deseja adicionar outro produto ao pedido? (Digite 'sim' ou 'nao')");
+					System.out.println("\nDeseja adicionar outro produto ao pedido? (Digite 'sim' ou 'nao')");
 					String resposta = scanner.next();
 
 					adicionarOutroProduto = resposta.equalsIgnoreCase("sim");
@@ -148,11 +148,12 @@ public class MainFomeZero {
 				Cliente cliente = criarCliente();
 				novo.setCliente(cliente);
 				novo.setEntregador(entregador);
-				entity.getTransaction().begin();
-				entity.persist(cliente);
-				entity.getTransaction().commit();
-				entregadoDao.save(entregador);
 
+				// Salvando no banco de dados os dado do pedido
+
+				clienteDao.save(cliente);
+				EntregadorDAO entregadoDao = new EntregadorDAO(entityManagerFactory);
+				entregadoDao.save(entregador);
 				pedidoDao.save(novo);
 
 				System.out.println("Pedido:");
@@ -168,11 +169,37 @@ public class MainFomeZero {
 	                System.out.println("Nome do Entregador: " + pedido.getEntregador());
 	                System.out.println("--------------------------------------");
 			}
-				
+
 				System.out.println();
 				System.out.println("Pedido finalizado");
 				
-				
+				Pedido encontradoPedido = pedidoDao.searchPorId(novo.getNumPedido());
+				System.out.println();
+
+				List<Produto> listaProdutoPedido = encontradoPedido.getProdutos();
+				// Mostrando detalhes do pedido
+				System.out.print("Total de produto:"+ listaProdutoPedido.size());
+				System.out.println("Pedido:");
+				List<Integer> idProdutos = exibirIdProduct(listaProdutoPedido);
+				System.out.println("Total:" + encontradoPedido.getTotal());
+				// Informando o usuario todos os produtos e os ingredientes de cada produto
+				for (Integer id : idProdutos) {
+					Produto encontrado = produtoDao.searchPorId(id);
+					encontrado.exibirProduto();
+					System.out.println("Ingredientes do produto: " + encontrado.getNome());
+					List<Ingredientes> ingredientesList = produtoDao.listAllIngredientProduct(id);
+					for (Ingredientes ingrediente : ingredientesList) {
+						System.out.println(" " + ingrediente.getNome());
+					}
+					System.out.println();
+				}
+
+				Cliente clientePedido = encontradoPedido.getCliente();
+				System.out.println("\n Cliente:" + clientePedido.getNome() + ",telefon:" + clientePedido.getTelefone());
+
+				System.out.println("\n Entregador:" + encontradoPedido.getEntregador().getNome());
+				clienteDao.fecharConexao();
+				entregadoDao.fecharConexao();
 				break;
 			case 3:
 				System.out.println("Pesquiser o produto ");
@@ -181,17 +208,18 @@ public class MainFomeZero {
 				System.out.print("Digite o id do produto: ");
 				int escolhaId = scanner.nextInt();
 				Produto produtoEcontrado = produtoDao.searchPorId(escolhaId);
-				//retornando produto encontrado
+
+				// retornando produto encontrado
 				System.out.println();
 				System.out.println("Produto encontrado: ");
 				produtoEcontrado.exibirProduto();
-				//retornando ingrediente dos produto encontrado
+				// retornando ingrediente dos produto encontrado
 				System.out.println("Lista de ingrediente do produto: " + produtoEcontrado.getNome());
 				List<Ingredientes> ingredientesList = produtoDao.listAllIngredientProduct(escolhaId);
 				for (Ingredientes ingrediente : ingredientesList) {
 					System.out.println("  " + ingrediente.getNome());
 				}
-				
+
 				break;
 			case 4:
 				System.out.println();
@@ -202,16 +230,19 @@ public class MainFomeZero {
 				for(Pedido pedido : listaDePedidos){
 					System.out.println("Numero do pedido:" + pedido.getNumPedido());
 					System.out.println("Entregador:" + pedido.getEntregador().getNome());
-					System.out.println("Cliente:" + pedido.getCliente().getNome() + pedido.getCliente().getTelef());
+					System.out.println("Cliente:" + pedido.getCliente().getNome() + "Telefone:" + pedido.getCliente().getTelefone());
 					System.out.println("Total do pedido:" + pedido.getTotal());
-					System.out.println("Produtos:" + pedido.getProdutos());
+					List<Produto> produtoDoPedido = pedido.getProdutos();
+					for(Produto produto : produtoDoPedido) {
+						System.out.println("Produtos:" + produto.getNome());
+					}
 				}
-				System.out.println();
-				System.out.println("deseja exlcuir algum?");
-				System.out.println();
+				pedidoDao.fecharConexao();
 					break;
 				case 5:
-					System.out.println(pedidoDao.listAllPedidos());
+					System.out.print("\nDigite o número do pedido que deseja excluir: ");
+					int numPedidoExcluir = scanner.nextInt();
+					pedidoDao.deletPedido(numPedidoExcluir);
 					break;
 			case 0:
 				System.out.println(" \n Saindo do programa. Até mais!");
@@ -230,6 +261,7 @@ public class MainFomeZero {
 		System.out.println("\n Saindo do programa. Até mais!");
 		System.out.println("Sistema finalizado");
 		// Fecha o scanner ao finalizar o programa
+
 		scanner.close();
 	}
 
@@ -248,10 +280,10 @@ public class MainFomeZero {
 	private static Cliente criarCliente() {
 		Scanner input = new Scanner(System.in);
 
-		System.out.print("Digite o seus dados:");
-		System.out.println("Digit o seu nome");
+		System.out.println("Digite o seus dados:");
+		System.out.print("Digite o seu nome");
 		String nome = input.next();
-		System.out.println("Digit o seu telefone");
+		System.out.print("Digit o seu telefone");
 		Long telefone = input.nextLong();
 		return new Cliente(nome, telefone);
 	}
@@ -261,6 +293,15 @@ public class MainFomeZero {
 		for (Produto encontrado : listaDeProdutos) {
 			encontrado.exibirProduto();
 		}
+	}
+
+	private static List<Integer> exibirIdPedido(List<Pedido> listaDePedido) {
+		// Iterage sobre a lista e exibe cada id do produto
+		List<Integer> idProduct = new ArrayList();
+		for (Pedido encontrado : listaDePedido) {
+			idProduct.add(encontrado.getNumPedido());
+		}
+		return idProduct;
 	}
 
 	private static List<Integer> exibirIdProduct(List<Produto> listaDeProdutos) {

@@ -1,16 +1,22 @@
 package dao;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import classes.*;
-
 import java.util.List;
 import java.util.Set;
 
-public class ProdutoDAO  extends DataDAO{
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 
+import classes.Ingredientes;
+import classes.Produto;
+
+public class ProdutoDAO extends DataDAO {
+
+	private EntityManager entityManager;
+
+	public ProdutoDAO(EntityManagerFactory entityManagerFactory) {
+		super();
+		this.entityManager = entityManagerFactory.createEntityManager();
+	}
 
 	// Salvando Produto no banco de dados
 	public void save(Produto produto) {
@@ -97,5 +103,8 @@ public class ProdutoDAO  extends DataDAO{
 		}
 	}
 
+	public void fecharConexao() {
+		entityManager.close();
+	}
 
 }

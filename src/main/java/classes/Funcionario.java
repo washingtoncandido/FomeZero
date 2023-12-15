@@ -8,6 +8,8 @@ public abstract class Funcionario {
 	@Id
 	private int id;
 	private String nome;
+	public Funcionario() {
+	}
 	public Funcionario(int id, String nome) {
 		this.id = id;
 		this.nome = nome;
