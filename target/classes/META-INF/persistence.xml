@@ -8,6 +8,7 @@
 
 		<description> arquivo de persistencia JPA </description>
 
+
 		<!-- Implementacao do JPA -->
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<!--
@@ -16,7 +17,6 @@
 		<class>classes.Entregador</class>
 		<class>classes.Ingredientes</class>
 		<class>classes.Produto</class>
-
 
 		<properties>
 			<!-- Configuracoes do banco de dados -->
@@ -30,6 +30,7 @@
 
 			<property name="javax.persistence.jdbc.driver"
 				value="org.postgresql.Driver" />
+
 
 
 			<!-- Configuracoes do Hibernate-->

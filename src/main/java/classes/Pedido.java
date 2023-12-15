@@ -75,12 +75,6 @@ public class Pedido {
 	}
 	
 	
-	@Override
-	public String toString() {
-		return "Pedido [numPedido=" + numPedido + ", cliente=" + cliente + ", produtos=" + produtos + ", entregador="
-				+ entregador + ", total=" + total + "]";
-	}
-
 	// Método para atualizar o total com base nos preços dos produtos
 	private void atualizarTotal() {
 		this.total = getProdutos().stream().mapToDouble(Produto::getPreco).sum();
