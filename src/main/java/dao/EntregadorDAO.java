@@ -5,9 +5,6 @@ import java.util.List;
 import classes.Entregador;
 
 public class EntregadorDAO extends DataDAO {
-
-
-
     public void save(Entregador entregador) {
         try {
             entityManager.getTransaction().begin();
@@ -29,16 +26,6 @@ public class EntregadorDAO extends DataDAO {
             return null;
         }
     }
-    public Entregador searchPorNome(String nome) {
-        try {
-            return entityManager.find(Entregador.class, nome);
-        } catch(Exception e){
-            e.printStackTrace();
-            System.out.println("mensagem de erro: " + e.getMessage());
-            return null;
-        }
-    }
-
     public List<Entregador> listAllEntregador() {
         try {
             return entityManager.createQuery("select * from entregador ", Entregador.class).getResultList();

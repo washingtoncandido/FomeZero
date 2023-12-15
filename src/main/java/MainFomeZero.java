@@ -148,7 +148,7 @@ public class MainFomeZero {
 				entity.getTransaction().commit();
 				entregadoDao.save(entregador);
 				
-				pedidoDao.salvarPedido(novo);
+				pedidoDao.save(novo);
 				System.out.println("Pedido:"+ novo.toString());
 				
 				System.out.println("Pedido finalizado");
@@ -171,6 +171,12 @@ public class MainFomeZero {
 				}
 				break;
 			case 4:
+				System.out.println();
+				System.out.println("Pedidos");
+				System.out.println();
+
+				System.out.println(pedidoDao.listAllPedidos());
+
 				break;
 			case 0:
 				System.out.println(" \n Saindo do programa. Até mais!");
@@ -209,7 +215,7 @@ public class MainFomeZero {
 		System.out.println("1. Ver Catalogo");
 		System.out.println("2. Fazer pedido ");
 		System.out.println("3. Buscar Produto");
-		System.out.println("4. Ver pedido");
+		System.out.println("4. Ver pedidos");
 		System.out.println("0. Sair");
 		System.out.println();
 	}
