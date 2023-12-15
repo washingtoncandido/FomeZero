@@ -52,9 +52,6 @@ public class Produto {
 	public String getNome() {
 		return this.nome;
 	}
-	public Set<Ingredientes> getIngredientes() {
-		return ingrediente;
-	}
 
 	public void setIngredientes(Set<Ingredientes> ingredientes) {
 		this.ingrediente = ingredientes;
