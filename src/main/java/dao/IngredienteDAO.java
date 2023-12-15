@@ -14,7 +14,10 @@ public class IngredienteDAO extends DataDAO {
 
 	// Salvando Produto no banco de dados
 	public void save(Ingredientes ingrediente) {
+		entityManager.getTransaction().begin();
 		entityManager.persist(ingrediente);
+		entityManager.getTransaction().commit();
+		
 	}
 	// retorna um produto por ID
 	public Ingredientes searchPorID(Integer id) {

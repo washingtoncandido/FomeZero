@@ -38,12 +38,22 @@ public class Pedido {
 		this.total = total;
 		atualizarTotal();
 	}
+	
 
 	public List<Produto> getProdutos() {
 		if (produtos == null) {
 			produtos = new ArrayList<>();
 		}
 		return produtos;
+	}
+
+	public void exibirPedido() {
+		System.out.println("Código do pedido: " + this.numPedido + ", Cliente: " + this.cliente+ ", Produto:"
+				+ this.produtos + ", Entregador " + this.entregador + ", Total" + this.total);
+	}
+
+	public Integer getNumPedido() {
+		return numPedido;
 	}
 
 	public void adicionarProduto(Produto produto) {

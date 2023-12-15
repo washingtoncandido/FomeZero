@@ -90,4 +90,11 @@ public class Produto {
 
 	}
 
+	@Override
+	public String toString() {
+		return "Produto [cod=" + cod + ", nome=" + nome + ", preco=" + preco + ", oferta=" + oferta + ", ingrediente="
+				+ ingrediente + ", pedidos=" + pedidos + "]";
+	}
+	
+
 }

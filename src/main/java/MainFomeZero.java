@@ -76,9 +76,9 @@ public class MainFomeZero {
 		ingredienteDao.save(mucarela);
 
 		// gravando dados no banco de produtos
-		entity.persist(frankistai);
-		entity.persist(lobisome);
-		entity.getTransaction().commit();
+		produtoDao.save(frankistai);
+		produtoDao.save(lobisome);
+		
 		Scanner scanner = new Scanner(System.in);
 	
 
@@ -146,14 +146,27 @@ public class MainFomeZero {
 				entity.persist(cliente);
 				entity.getTransaction().commit();
 				entregadoDao.save(entregador);
-				
-				pedidoDao.salvarPedido(novo);
+
+				pedidoDao.save(novo);
 				
 				
 				System.out.println("Pedido:");
 				
+			List<Pedido> todosPedidos = pedidoDao.listAllPedidos();
+			
+			for(Pedido pedido : todosPedidos) {
+				 System.out.println("Número do Pedido: " + pedido.getNumPedido());
+	                System.out.println("Nome do Cliente: " + pedido.getCliente());
+	                System.out.println("Código do Produto: " + pedido.getProdutos());
+	                System.out.println("Nome do Produto: " + pedido.getProdutos());
+	                System.out.println("Total do Pedido: " + pedido.getTotal());
+	                System.out.println("Nome do Entregador: " + pedido.getEntregador());
+	                System.out.println("--------------------------------------");
+			}
 				
+				System.out.println();
 				System.out.println("Pedido finalizado");
+				
 				
 				break;
 			case 3:
