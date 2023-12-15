@@ -25,7 +25,6 @@ public class Endereco {
         this.cep = cep;
     }
 
-    // Métodos de acesso (getters e setters)
     public String getRua() {
         return rua;
     }

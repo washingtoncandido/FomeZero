@@ -82,9 +82,5 @@ public class EntregadorDAO extends DataDAO {
             entityManager.getTransaction().rollback();
         }
     }
-    public void fecharEntityManager() {
-        if (entityManager != null && entityManager.isOpen()) {
-            entityManager.close();
-        }
-    }
+
 }
