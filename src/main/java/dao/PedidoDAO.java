@@ -9,8 +9,6 @@ import classes.Produto;
 
 public class PedidoDAO extends DataDAO {
 
-
-
 	public void salvarPedido(Pedido pedido) {
 		entityManager.getTransaction().begin();
 		entityManager.persist(pedido);

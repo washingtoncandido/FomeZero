@@ -38,9 +38,4 @@ public class IngredienteDAO extends DataDAO {
 		}
 	}
 
-	public void fecharEntityManager() {
-		if (entityManager != null && entityManager.isOpen()) {
-			entityManager.close();
-		}
-	}
 }

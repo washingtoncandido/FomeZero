@@ -143,9 +143,13 @@ public class MainFomeZero {
 				Cliente cliente = criarCliente();
 				novo.setCliente(cliente);
 				novo.setEntregador(entregador);
+				entity.getTransaction().begin();
 				entity.persist(cliente);
+				entity.getTransaction().commit();
 				entregadoDao.save(entregador);
+				
 				pedidoDao.salvarPedido(novo);
+				System.out.println("Pedido:"+ novo.toString());
 				
 				System.out.println("Pedido finalizado");
 				
