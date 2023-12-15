@@ -34,13 +34,16 @@ public class Cliente {
 		return nome;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public Long getTelefone() {
+		return telefone;
+	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	@Override
-	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", telefone=" + telefone + ", pedidos=" + pedidos + "]";
-	}
-	
 }

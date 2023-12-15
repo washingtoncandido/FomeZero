@@ -1,6 +1,8 @@
 package dao;
 
 import classes.Pedido;
+import classes.PedidoDTO;
+import classes.Produto;
 
 import java.util.List;
 
@@ -27,21 +29,33 @@ public class PedidoDAO extends DataDAO {
 			return null;
 		}
 	}
-	public List<Pedido> listAllPedidos() {
+	
+	public List<Produto> listAllProducts() {
 		try {
-			return entityManager.createQuery( "SELECT NEW dao.Pedido(p.numeroPedido, c.nome, pp.produto.cod, prod.nome, p.total, e.nome) " +
-                    "FROM Pedido p, Cliente c, PedidoProduto pp, Produto prod, entregador e " +
-                    "WHERE c.id = p.cliente.id " +
-                    "AND p.numeroPedido = pp.pedido.numeroPedido " +
-                    "AND pp.produto.cod = prod.cod " +
-                    "AND p.entregador.id = e.id", Pedido.class)
-            .getResultList();
-		} catch(Exception e){
+			return entityManager.createQuery("SELECT p FROM Pedido p", Produto.class).getResultList();
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("mensagem de erro: " + e.getMessage());
 			return null;
 		}
 	}
+	public List<PedidoDTO> listAllProduct() {
+	    try {
+	        return entityManager.createQuery(
+	                "SELECT NEW com.example.PedidoDTO(p.numeroPedido, c.nome, pp.produto.cod, prod.nome, p.total, e.nome) " +
+	                        "FROM Pedido p, Cliente c, PedidoProduto pp, Produto prod, Entregador e " +
+	                        "WHERE c.id = p.cliente.id " +
+	                        "AND p.numeroPedido = pp.pedido.numeroPedido " +
+	                        "AND pp.produto.cod = prod.cod " +
+	                        "AND p.entregador.id = e.id", PedidoDTO.class)
+	                .getResultList();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        System.out.println("mensagem de erro: " + e.getMessage());
+	        return null;
+	    }
+	}
+
 
 	public void deletPedido(int id) {
 		try {
