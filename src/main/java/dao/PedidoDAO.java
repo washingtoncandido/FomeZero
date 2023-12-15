@@ -5,6 +5,7 @@ import classes.Pedido;
 import java.util.List;
 
 public class PedidoDAO extends DataDAO {
+	
 	public void save(Pedido pedido) {
 		try {
 			entityManager.getTransaction().begin();
@@ -28,7 +29,7 @@ public class PedidoDAO extends DataDAO {
 	}
 	public List<Pedido> listAllPedidos() {
 		try {
-			return entityManager.createQuery("select * from pedido ", Pedido.class).getResultList();
+			return entityManager.createQuery( "SELECT p FROM Pedido p", Pedido.class).getResultList();
 		} catch(Exception e){
 			e.printStackTrace();
 			System.out.println("mensagem de erro: " + e.getMessage());

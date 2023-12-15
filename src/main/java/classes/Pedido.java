@@ -2,7 +2,7 @@ package classes;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Random;
 
 import javax.persistence.*;
 
@@ -38,12 +38,22 @@ public class Pedido {
 		this.total = total;
 		atualizarTotal();
 	}
+	
 
 	public List<Produto> getProdutos() {
 		if (produtos == null) {
 			produtos = new ArrayList<>();
 		}
 		return produtos;
+	}
+
+	public void exibirPedido() {
+		System.out.println("Código do pedido: " + this.numPedido + ", Cliente: " + this.cliente+ ", Produto:"
+				+ this.produtos + ", Entregador " + this.entregador + ", Total" + this.total);
+	}
+
+	public Integer getNumPedido() {
+		return numPedido;
 	}
 
 	public void adicionarProduto(Produto produto) {
@@ -75,12 +85,6 @@ public class Pedido {
 	}
 	
 	
-	@Override
-	public String toString() {
-		return "Pedido [numPedido=" + numPedido + ", cliente=" + cliente + ", produtos=" + produtos + ", entregador="
-				+ entregador + ", total=" + total + "]";
-	}
-
 	// Método para atualizar o total com base nos preços dos produtos
 	private void atualizarTotal() {
 		this.total = getProdutos().stream().mapToDouble(Produto::getPreco).sum();

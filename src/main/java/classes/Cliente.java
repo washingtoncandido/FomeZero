@@ -20,9 +20,8 @@ public class Cliente {
 
 	private String nome;
 	private Long telefone;
-	@OneToOne
-	private Endereco endereco;
-	@OneToMany(mappedBy = "Cliente", cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Pedido> pedidos;
 
 	public Cliente(String nome, Long telefone) {
@@ -30,6 +29,7 @@ public class Cliente {
 		this.nome = nome;
 		this.telefone = telefone;
 	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -37,4 +37,10 @@ public class Cliente {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	@Override
+	public String toString() {
+		return "Cliente [id=" + id + ", nome=" + nome + ", telefone=" + telefone + ", pedidos=" + pedidos + "]";
+	}
+	
 }

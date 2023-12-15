@@ -14,4 +14,6 @@ public class Entregador extends Funcionario {
                 ", nome='" + super.getNome() + '\'' +
                 '}';
     }
+    
+    
 }

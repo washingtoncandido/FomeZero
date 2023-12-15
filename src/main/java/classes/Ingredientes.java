@@ -9,6 +9,12 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Ingredientes {
 
+	@Override
+	public String toString() {
+		return "Ingredientes [cod=" + cod + ", nome=" + nome + ", marca=" + marca + ", quantidade=" + quantidade
+				+ ", unidade=" + unidade + ", produto=" + produto + "]";
+	}
+
 	@Id
 	private Integer cod;
 	private String nome;

@@ -1,11 +1,7 @@
 package classes;
 
-import javax.persistence.*;
-
-@Entity
 public class Endereco {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int id;
     private String rua;
     private int numero;
@@ -14,7 +10,7 @@ public class Endereco {
     private String estado;
     private String cep;
 
-    @OneToOne(mappedBy = "Endereco")
+    
     private Cliente cliente;
     public Endereco(String rua, int numero, String bairro, String cidade, String estado, String cep) {
         this.rua = rua;

@@ -63,25 +63,30 @@ public class MainFomeZero {
 		conjuntoIngredientesFrankistai.add(brie);
 
 		// gravando dados no banco de ingredientes
-		entity.getTransaction().begin();
-		entity.persist(camembert);
-		entity.persist(carne);
-		entity.persist(mortadela);
-		entity.persist(guarana);
-		entity.persist(brie);
-		entity.persist(gorgonzola);
-		entity.persist(batataIngl);
-		entity.persist(guarana);
-		entity.persist(tomate);
-		entity.persist(cebola);
-		entity.persist(mucarela);
+		ingredienteDao.save(camembert);
+		ingredienteDao.save(carne);
+		ingredienteDao.save(mortadela);
+		ingredienteDao.save(guarana);
+		ingredienteDao.save(brie);
+		ingredienteDao.save(gorgonzola);
+		ingredienteDao.save(batataIngl);
+		ingredienteDao.save(guarana);
+		ingredienteDao.save(tomate);
+		ingredienteDao.save(cebola);
+		ingredienteDao.save(mucarela);
+
+//		List<Produto> listaDeProdutos2 = (List<Produto>) new Produto(5,"lista de produtos 5",10.50,true, conjuntoIngredientesFrankistai);
+//		List<Produto> listaDeProdutos2 = new ArrayList<>();
+//		listaDeProdutos2.add(new Produto(5,"lista de produtos 5",10.50,true, conjuntoIngredientesFrankistai));
+//
+//		Cliente adriano = new Cliente("adriano", 45L);
+//		Pedido pedido1 = new Pedido(adriano,listaDeProdutos2,entregador,15.5);
 
 		// gravando dados no banco de produtos
-		entity.persist(frankistai);
-		entity.persist(lobisome);
-		entity.getTransaction().commit();
+		produtoDao.save(frankistai);
+		produtoDao.save(lobisome);
+		
 		Scanner scanner = new Scanner(System.in);
-	
 
 		boolean continuar = true;
 
@@ -147,11 +152,26 @@ public class MainFomeZero {
 				entity.persist(cliente);
 				entity.getTransaction().commit();
 				entregadoDao.save(entregador);
-				
+
 				pedidoDao.save(novo);
-				System.out.println("Pedido:"+ novo.toString());
+
+				System.out.println("Pedido:");
 				
+			List<Pedido> todosPedidos = pedidoDao.listAllPedidos();
+			
+			for(Pedido pedido : todosPedidos) {
+				 System.out.println("Número do Pedido: " + pedido.getNumPedido());
+	                System.out.println("Nome do Cliente: " + pedido.getCliente());
+	                System.out.println("Código do Produto: " + pedido.getProdutos());
+	                System.out.println("Nome do Produto: " + pedido.getProdutos());
+	                System.out.println("Total do Pedido: " + pedido.getTotal());
+	                System.out.println("Nome do Entregador: " + pedido.getEntregador());
+	                System.out.println("--------------------------------------");
+			}
+				
+				System.out.println();
 				System.out.println("Pedido finalizado");
+				
 				
 				break;
 			case 3:
@@ -161,23 +181,38 @@ public class MainFomeZero {
 				System.out.print("Digite o id do produto: ");
 				int escolhaId = scanner.nextInt();
 				Produto produtoEcontrado = produtoDao.searchPorId(escolhaId);
+				//retornando produto encontrado
 				System.out.println();
 				System.out.println("Produto encontrado: ");
 				produtoEcontrado.exibirProduto();
+				//retornando ingrediente dos produto encontrado
 				System.out.println("Lista de ingrediente do produto: " + produtoEcontrado.getNome());
-				List<Ingredientes> ingredientesList = produtoDao.listAllIngredientProduct(123);
+				List<Ingredientes> ingredientesList = produtoDao.listAllIngredientProduct(escolhaId);
 				for (Ingredientes ingrediente : ingredientesList) {
 					System.out.println("  " + ingrediente.getNome());
 				}
+				
 				break;
 			case 4:
 				System.out.println();
 				System.out.println("Pedidos");
 				System.out.println();
 
-				System.out.println(pedidoDao.listAllPedidos());
-
-				break;
+				List<Pedido> listaDePedidos = pedidoDao.listAllPedidos();
+				for(Pedido pedido : listaDePedidos){
+					System.out.println("Numero do pedido:" + pedido.getNumPedido());
+					System.out.println("Entregador:" + pedido.getEntregador().getNome());
+					System.out.println("Cliente:" + pedido.getCliente().getNome() + pedido.getCliente().getTelefone());
+					System.out.println("Total do pedido:" + pedido.getTotal());
+					System.out.println("Produtos:" + pedido.getProdutos());
+				}
+				System.out.println();
+				System.out.println("deseja exlcuir algum?");
+				System.out.println();
+					break;
+				case 5:
+					System.out.println(pedidoDao.listAllPedidos());
+					break;
 			case 0:
 				System.out.println(" \n Saindo do programa. Até mais!");
 				continuar = false;
@@ -198,6 +233,18 @@ public class MainFomeZero {
 		scanner.close();
 	}
 
+	private static void exibirMenu() {
+		System.out.println("\n==== BEM VINDO AO FOME ZERO ====");
+		System.out.println("\n==== ESCOLHA UMA OPÇÃO ====");
+		System.out.println("1. Ver Catalogo");
+		System.out.println("2. Fazer pedido ");
+		System.out.println("3. Buscar Produto");
+		System.out.println("4. Ver pedido");
+		System.out.println("5. Excluir pedido");
+		System.out.println("0. Sair");
+		System.out.println();
+	}
+
 	private static Cliente criarCliente() {
 		Scanner input = new Scanner(System.in);
 
@@ -207,17 +254,6 @@ public class MainFomeZero {
 		System.out.println("Digit o seu telefone");
 		Long telefone = input.nextLong();
 		return new Cliente(nome, telefone);
-	}
-
-	private static void exibirMenu() {
-		System.out.println("\n==== BEM VINDO AO FOME ZERO ====");
-		System.out.println("\n==== ESCOLHA UMA OPÇÃO ====");
-		System.out.println("1. Ver Catalogo");
-		System.out.println("2. Fazer pedido ");
-		System.out.println("3. Buscar Produto");
-		System.out.println("4. Ver pedidos");
-		System.out.println("0. Sair");
-		System.out.println();
 	}
 
 	private static void exibirAllProduct(List<Produto> listaDeProdutos) {
