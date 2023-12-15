@@ -1,8 +1,5 @@
 package classes;
 
-import javax.persistence.*;
-
-
 public class Endereco {
 
     private int id;

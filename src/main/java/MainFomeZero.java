@@ -63,18 +63,17 @@ public class MainFomeZero {
 		conjuntoIngredientesFrankistai.add(brie);
 
 		// gravando dados no banco de ingredientes
-		entity.getTransaction().begin();
-		entity.persist(camembert);
-		entity.persist(carne);
-		entity.persist(mortadela);
-		entity.persist(guarana);
-		entity.persist(brie);
-		entity.persist(gorgonzola);
-		entity.persist(batataIngl);
-		entity.persist(guarana);
-		entity.persist(tomate);
-		entity.persist(cebola);
-		entity.persist(mucarela);
+		ingredienteDao.save(camembert);
+		ingredienteDao.save(carne);
+		ingredienteDao.save(mortadela);
+		ingredienteDao.save(guarana);
+		ingredienteDao.save(brie);
+		ingredienteDao.save(gorgonzola);
+		ingredienteDao.save(batataIngl);
+		ingredienteDao.save(guarana);
+		ingredienteDao.save(tomate);
+		ingredienteDao.save(cebola);
+		ingredienteDao.save(mucarela);
 
 		// gravando dados no banco de produtos
 		entity.persist(frankistai);
@@ -149,7 +148,10 @@ public class MainFomeZero {
 				entregadoDao.save(entregador);
 				
 				pedidoDao.salvarPedido(novo);
-				System.out.println("Pedido:"+ novo.toString());
+				
+				
+				System.out.println("Pedido:");
+				
 				
 				System.out.println("Pedido finalizado");
 				
@@ -161,14 +163,17 @@ public class MainFomeZero {
 				System.out.print("Digite o id do produto: ");
 				int escolhaId = scanner.nextInt();
 				Produto produtoEcontrado = produtoDao.searchPorId(escolhaId);
+				//retornando produto encontrado
 				System.out.println();
 				System.out.println("Produto encontrado: ");
 				produtoEcontrado.exibirProduto();
+				//retornando ingrediente dos produto encontrado
 				System.out.println("Lista de ingrediente do produto: " + produtoEcontrado.getNome());
-				List<Ingredientes> ingredientesList = produtoDao.listAllIngredientProduct(123);
+				List<Ingredientes> ingredientesList = produtoDao.listAllIngredientProduct(escolhaId);
 				for (Ingredientes ingrediente : ingredientesList) {
 					System.out.println("  " + ingrediente.getNome());
 				}
+				
 				break;
 			case 4:
 				break;
@@ -191,6 +196,17 @@ public class MainFomeZero {
 		// Fecha o scanner ao finalizar o programa
 		scanner.close();
 	}
+	
+	private static void exibirMenu() {
+		System.out.println("\n==== BEM VINDO AO FOME ZERO ====");
+		System.out.println("\n==== ESCOLHA UMA OPÇÃO ====");
+		System.out.println("1. Ver Catalogo");
+		System.out.println("2. Fazer pedido ");
+		System.out.println("3. Buscar Produto");
+		System.out.println("4. Ver pedido");
+		System.out.println("0. Sair");
+		System.out.println();
+	}
 
 	private static Cliente criarCliente() {
 		Scanner input = new Scanner(System.in);
@@ -203,16 +219,7 @@ public class MainFomeZero {
 		return new Cliente(nome, telefone);
 	}
 
-	private static void exibirMenu() {
-		System.out.println("\n==== BEM VINDO AO FOME ZERO ====");
-		System.out.println("\n==== ESCOLHA UMA OPÇÃO ====");
-		System.out.println("1. Ver Catalogo");
-		System.out.println("2. Fazer pedido ");
-		System.out.println("3. Buscar Produto");
-		System.out.println("4. Ver pedido");
-		System.out.println("0. Sair");
-		System.out.println();
-	}
+
 
 	private static void exibirAllProduct(List<Produto> listaDeProdutos) {
 		// Iterage sobre a lista e exibe cada produto
